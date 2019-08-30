@@ -1,0 +1,19 @@
+// VARIABLES
+$bg-color: #f6f8ff;
+$font-color: #0a0a23;
+$card-bg: #fff07c;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  color: $font-color;
+  line-height: 1.5rem;
+  background: $bg-color;
+}

@@ -4,7 +4,7 @@
   "description": "Notes App",
   "main": "index.js",
   "scripts": {
-    "compile:sass": "node-sass styles/sass/main.scss styles/css/styles.css"
+    "compile:sass": "node-sass styles/sass/main.scss styles/css/styles.css -watch"
   },
   "keywords": [
     "notes",
