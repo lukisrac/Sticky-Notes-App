@@ -27,8 +27,8 @@
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure, cupiditate!
                         </p>
                         <div class="note__footer">
-                            <i class="icon fas fa-pen"></i>
-                            <i class="icon fas fa-trash-alt"></i>
+                            <i class="icon edit fas fa-pen"></i>
+                            <i class="icon delete fas fa-trash-alt"></i>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,19 @@
 
     <button class="add" title="Add new note">+</button>
 
+    <div class="form__wrapper d-none">
+        <form class="add-note">
+            <span class="close">&Cross;</span>
+            <label for="title">Enter title</label>
+            <input type="text" id="title" class="input" autocomplete="off">
+            <label for="description">Enter description</label>
+            <textarea id="description" cols="30" rows="10"></textarea>
+            <input type="submit" value="Add note" class="submit">
+        </form>
+    </div>
+
     <script src="https://kit.fontawesome.com/adac62cc78.js"></script>
+    <script src="scripts/app.js"></script>
 </body>
 
 </html>

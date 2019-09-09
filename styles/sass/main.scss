@@ -4,6 +4,11 @@ $font-color: #191716;
 $note-bg: #e6af2e;
 $button-bg: #3d348b;
 
+// CLASSES
+.d-none {
+  display: none !important;
+}
+
 // BASE STYLES
 *,
 *::before,
@@ -68,6 +73,7 @@ body {
       background: $note-bg;
       min-height: 18rem;
       padding: 2rem;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     }
     &__title {
       font-size: 1.4rem;
@@ -82,6 +88,66 @@ body {
         margin: 0 0.5rem;
         cursor: pointer;
       }
+    }
+  }
+}
+.form__wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-note {
+  background: #fff;
+  width: 40%;
+  padding: 3rem 1.5rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  label {
+    margin-bottom: 0.5rem;
+  }
+  .input,
+  textarea {
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+    resize: none;
+
+    &:focus {
+      border-color: $button-bg;
+      box-shadow: 0 0 0 0.2rem rgba($button-bg, 0.25);
+    }
+  }
+  .submit {
+    align-self: flex-end;
+    margin-top: 1rem;
+    background: $button-bg;
+    color: #fff;
+    border: 0;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background: darken($button-bg, 5%);
     }
   }
 }
