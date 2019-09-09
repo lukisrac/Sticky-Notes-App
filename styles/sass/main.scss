@@ -1,7 +1,8 @@
 // VARIABLES
-$bg-color: #f6f8ff;
-$font-color: #0a0a23;
-$card-bg: #fff07c;
+$bg-color: #e0e2db;
+$font-color: #191716;
+$card-bg: #e6af2e;
+$button-bg: #3d348b;
 
 // BASE STYLES
 *,
@@ -17,4 +18,26 @@ body {
   color: $font-color;
   line-height: 1.5rem;
   background: $bg-color;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.add {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background: $button-bg;
+  color: #fff;
+  border: 0;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  transform: translateZ(0) scale(1);
+
+  &:hover {
+    transform: translateZ(0) scale(1.1);
+  }
 }

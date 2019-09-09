@@ -1,4 +1,4 @@
-/* line 7, styles/sass/main.scss */
+/* line 8, styles/sass/main.scss */
 *,
 *::before,
 *::after {
@@ -6,10 +6,32 @@
   padding: 0;
   box-sizing: border-box; }
 
-/* line 14, styles/sass/main.scss */
+/* line 15, styles/sass/main.scss */
 body {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
-  color: #0a0a23;
+  color: #191716;
   line-height: 1.5rem;
-  background: #f6f8ff; }
+  background: #e0e2db;
+  position: relative;
+  width: 100%;
+  height: 100vh; }
+
+/* line 25, styles/sass/main.scss */
+.add {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background: #3d348b;
+  color: #fff;
+  border: 0;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  transform: translateZ(0) scale(1); }
+  /* line 40, styles/sass/main.scss */
+  .add:hover {
+    transform: translateZ(0) scale(1.1); }
