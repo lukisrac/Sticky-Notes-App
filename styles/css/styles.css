@@ -1,4 +1,4 @@
-/* line 6, styles/sass/main.scss */
+/* line 7, styles/sass/main.scss */
 *,
 *::before,
 *::after {
@@ -6,7 +6,7 @@
   padding: 0;
   box-sizing: border-box; }
 
-/* line 13, styles/sass/main.scss */
+/* line 14, styles/sass/main.scss */
 body {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
