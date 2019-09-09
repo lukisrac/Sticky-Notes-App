@@ -1,7 +1,7 @@
 // VARIABLES
 $bg-color: #e0e2db;
 $font-color: #191716;
-$card-bg: #e6af2e;
+$note-bg: #e6af2e;
 $button-bg: #3d348b;
 
 // BASE STYLES
@@ -11,6 +11,8 @@ $button-bg: #3d348b;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
 }
 body {
   font-family: 'Lato', sans-serif;
@@ -39,5 +41,47 @@ body {
 
   &:hover {
     transform: translateZ(0) scale(1.1);
+  }
+}
+.header {
+  width: 100%;
+  padding: 2rem 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+}
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+}
+.notes__wrapper {
+  display: flex;
+  flex-flow: row wrap;
+
+  .note {
+    flex-basis: 20%;
+    padding: 1rem;
+
+    &__inner {
+      background: $note-bg;
+      min-height: 18rem;
+      padding: 2rem;
+    }
+    &__title {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+    &__footer {
+      margin: 1rem 0 0;
+      display: flex;
+      justify-content: flex-end;
+
+      .icon {
+        margin: 0 0.5rem;
+        cursor: pointer;
+      }
+    }
   }
 }
