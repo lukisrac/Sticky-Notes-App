@@ -1,7 +1,8 @@
 const addButton = document.querySelector('button.add');
 const notes = document.querySelector('.notes__wrapper');
 const formContainer = document.querySelector('.form__wrapper');
-const form = document.querySelector('form');
+const form = document.querySelector('.add-note');
+const edit = document.querySelector('.edit');
 
 // Open form
 const openForm = () => {
@@ -28,7 +29,6 @@ const addNote = e => {
       <h3 class="note__title">${title}</h3>
       <p class="note__text">${content}</p>
       <div class="note__footer">
-          <i class="icon edit fas fa-pen"></i>
           <i class="icon delete fas fa-trash-alt"></i>
       </div>
   </div>
@@ -46,6 +46,8 @@ const removeNote = e => {
     e.target.parentNode.parentNode.parentNode.remove();
   }
 };
+
+// Edit note
 
 // Listening for events
 notes.addEventListener('click', removeNote);

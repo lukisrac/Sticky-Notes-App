@@ -94,7 +94,8 @@ body {
     }
   }
 }
-.form__wrapper {
+.form__wrapper,
+.edit-form__wrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -105,7 +106,8 @@ body {
   justify-content: center;
   align-items: center;
 }
-.add-note {
+.add-note,
+.edit-note {
   background: #fff;
   width: 40%;
   padding: 3rem 1.5rem;

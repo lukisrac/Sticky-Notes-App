@@ -89,7 +89,8 @@ body {
         cursor: pointer; }
 
 /* line 97, styles/sass/main.scss */
-.form__wrapper {
+.form__wrapper,
+.edit-form__wrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -100,8 +101,9 @@ body {
   justify-content: center;
   align-items: center; }
 
-/* line 108, styles/sass/main.scss */
-.add-note {
+/* line 109, styles/sass/main.scss */
+.add-note,
+.edit-note {
   background: #fff;
   width: 40%;
   padding: 3rem 1.5rem;
@@ -109,31 +111,38 @@ body {
   display: flex;
   flex-direction: column;
   position: relative; }
-  /* line 117, styles/sass/main.scss */
-  .add-note .close {
+  /* line 119, styles/sass/main.scss */
+  .add-note .close,
+  .edit-note .close {
     position: absolute;
     top: 1rem;
     right: 1rem;
     font-size: 2rem;
     cursor: pointer; }
-  /* line 124, styles/sass/main.scss */
-  .add-note label {
+  /* line 126, styles/sass/main.scss */
+  .add-note label,
+  .edit-note label {
     margin-bottom: 0.5rem; }
-  /* line 127, styles/sass/main.scss */
+  /* line 129, styles/sass/main.scss */
   .add-note .input,
-  .add-note textarea {
+  .add-note textarea,
+  .edit-note .input,
+  .edit-note textarea {
     padding: 0.5rem;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     transition: all 0.2s;
     resize: none; }
-    /* line 135, styles/sass/main.scss */
+    /* line 137, styles/sass/main.scss */
     .add-note .input:focus,
-    .add-note textarea:focus {
+    .add-note textarea:focus,
+    .edit-note .input:focus,
+    .edit-note textarea:focus {
       border-color: #3d348b;
       box-shadow: 0 0 0 0.2rem rgba(61, 52, 139, 0.25); }
-  /* line 140, styles/sass/main.scss */
-  .add-note .submit {
+  /* line 142, styles/sass/main.scss */
+  .add-note .submit,
+  .edit-note .submit {
     align-self: flex-end;
     margin-top: 1rem;
     background: #3d348b;
@@ -144,6 +153,7 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s; }
-    /* line 152, styles/sass/main.scss */
-    .add-note .submit:hover {
+    /* line 154, styles/sass/main.scss */
+    .add-note .submit:hover,
+    .edit-note .submit:hover {
       background: #352d78; }

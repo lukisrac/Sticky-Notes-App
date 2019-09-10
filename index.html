@@ -26,7 +26,7 @@
                             temporibus iste reiciendis consequuntur expedita odit vel illo, et corporis molestiae sint.
                         </p>
                         <div class="note__footer">
-                            <i class="icon edit fas fa-pen"></i>
+                            <!-- <i class="icon edit fas fa-pen"></i> -->
                             <i class="icon delete fas fa-trash-alt"></i>
                         </div>
                     </div>
@@ -45,6 +45,17 @@
             <label for="description">Enter description</label>
             <textarea id="description" cols="30" rows="10"></textarea>
             <input type="submit" value="Add note" class="submit">
+        </form>
+    </div>
+
+    <div class="edit-form__wrapper d-none">
+        <form class="edit-note">
+            <span class="close">&Cross;</span>
+            <label for="title">Enter title</label>
+            <input type="text" id="title" class="input" autocomplete="off">
+            <label for="description">Enter description</label>
+            <textarea id="description" cols="30" rows="10"></textarea>
+            <input type="submit" value="Edit note" class="submit">
         </form>
     </div>
 
