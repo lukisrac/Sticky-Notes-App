@@ -52,18 +52,12 @@ const addNote = e => {
 const removeNote = e => {
   if (e.target.classList.contains('delete') && confirm('Are you sure you want to delete this note?')) {
     e.target.parentNode.parentNode.parentNode.remove();
-  }
-  deleteAlert.classList.remove('d-none');
-  deleteAlert.classList.remove('hide');
-  setTimeout(() => {
-    deleteAlert.classList.add('hide');
-  }, 2000);
-  /* alerts.forEach(alert => {
-    alert.classList.remove('hide');
+    deleteAlert.classList.remove('d-none');
+    deleteAlert.classList.remove('hide');
     setTimeout(() => {
-      alert.classList.add('hide');
+      deleteAlert.classList.add('hide');
     }, 2000);
-  }); */
+  }
 };
 
 // Edit note
