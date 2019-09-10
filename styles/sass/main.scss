@@ -4,11 +4,6 @@ $font-color: #191716;
 $note-bg: #e6af2e;
 $button-bg: #3d348b;
 
-// CLASSES
-.d-none {
-  display: none !important;
-}
-
 // BASE STYLES
 *,
 *::before,
@@ -155,4 +150,28 @@ body {
       background: darken($button-bg, 5%);
     }
   }
+}
+.alert {
+  border-radius: 0.25rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  width: 15rem;
+  opacity: 1;
+  transition: 0.6s;
+}
+.added {
+  background: #018e42;
+}
+.deleted {
+  background: #f03a47;
+}
+
+.d-none {
+  display: none;
+}
+.hide {
+  opacity: 0;
 }

@@ -3,6 +3,9 @@ const notes = document.querySelector('.notes__wrapper');
 const formContainer = document.querySelector('.form__wrapper');
 const form = document.querySelector('.add-note');
 const edit = document.querySelector('.edit');
+const alerts = document.querySelectorAll('.alert');
+const addAlert = document.querySelector('.alert.added');
+const deleteAlert = document.querySelector('.alert.deleted');
 
 // Open form
 const openForm = () => {
@@ -38,6 +41,11 @@ const addNote = e => {
   notes.innerHTML += note;
   formContainer.classList.add('d-none');
   form.reset();
+  addAlert.classList.remove('d-none');
+  addAlert.classList.remove('hide');
+  setTimeout(() => {
+    addAlert.classList.add('hide');
+  }, 2000);
 };
 
 // Remove note
@@ -45,6 +53,17 @@ const removeNote = e => {
   if (e.target.classList.contains('delete') && confirm('Are you sure you want to delete this note?')) {
     e.target.parentNode.parentNode.parentNode.remove();
   }
+  deleteAlert.classList.remove('d-none');
+  deleteAlert.classList.remove('hide');
+  setTimeout(() => {
+    deleteAlert.classList.add('hide');
+  }, 2000);
+  /* alerts.forEach(alert => {
+    alert.classList.remove('hide');
+    setTimeout(() => {
+      alert.classList.add('hide');
+    }, 2000);
+  }); */
 };
 
 // Edit note
