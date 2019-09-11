@@ -61,30 +61,34 @@ body {
   .notes__wrapper .note {
     flex-basis: 20%;
     padding: 1rem; }
-    /* line 67, styles/sass/main.scss */
+    @media screen and (max-width: 576px) {
+      /* line 63, styles/sass/main.scss */
+      .notes__wrapper .note {
+        flex-basis: 100%; } }
+    /* line 70, styles/sass/main.scss */
     .notes__wrapper .note__inner {
       background: #e6af2e;
       min-height: 18rem;
       padding: 1.5rem;
       box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
       position: relative; }
-    /* line 74, styles/sass/main.scss */
+    /* line 77, styles/sass/main.scss */
     .notes__wrapper .note__title {
       font-size: 1.4rem;
       margin-bottom: 0.8rem; }
-    /* line 78, styles/sass/main.scss */
+    /* line 81, styles/sass/main.scss */
     .notes__wrapper .note__footer {
       display: flex;
       justify-content: flex-end;
       position: absolute;
       bottom: 1rem;
       right: 1rem; }
-      /* line 85, styles/sass/main.scss */
+      /* line 88, styles/sass/main.scss */
       .notes__wrapper .note__footer .icon {
         margin: 0 0.5rem;
         cursor: pointer; }
 
-/* line 92, styles/sass/main.scss */
+/* line 95, styles/sass/main.scss */
 .form__wrapper,
 .edit-form__wrapper {
   position: absolute;
@@ -97,7 +101,7 @@ body {
   justify-content: center;
   align-items: center; }
 
-/* line 104, styles/sass/main.scss */
+/* line 107, styles/sass/main.scss */
 .add-note,
 .edit-note {
   background: #fff;
@@ -107,7 +111,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative; }
-  /* line 114, styles/sass/main.scss */
+  /* line 117, styles/sass/main.scss */
   .add-note .close,
   .edit-note .close {
     position: absolute;
@@ -115,11 +119,11 @@ body {
     right: 1rem;
     font-size: 2rem;
     cursor: pointer; }
-  /* line 121, styles/sass/main.scss */
+  /* line 124, styles/sass/main.scss */
   .add-note label,
   .edit-note label {
     margin-bottom: 0.5rem; }
-  /* line 124, styles/sass/main.scss */
+  /* line 127, styles/sass/main.scss */
   .add-note .input,
   .add-note textarea,
   .edit-note .input,
@@ -129,14 +133,14 @@ body {
     border-radius: 0.25rem;
     transition: all 0.2s;
     resize: none; }
-    /* line 132, styles/sass/main.scss */
+    /* line 135, styles/sass/main.scss */
     .add-note .input:focus,
     .add-note textarea:focus,
     .edit-note .input:focus,
     .edit-note textarea:focus {
       border-color: #3d348b;
       box-shadow: 0 0 0 0.2rem rgba(61, 52, 139, 0.25); }
-  /* line 137, styles/sass/main.scss */
+  /* line 140, styles/sass/main.scss */
   .add-note .submit,
   .edit-note .submit {
     align-self: flex-end;
@@ -149,12 +153,12 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s; }
-    /* line 149, styles/sass/main.scss */
+    /* line 152, styles/sass/main.scss */
     .add-note .submit:hover,
     .edit-note .submit:hover {
       background: #352d78; }
 
-/* line 154, styles/sass/main.scss */
+/* line 157, styles/sass/main.scss */
 .alert {
   border-radius: 0.25rem;
   position: absolute;
@@ -166,18 +170,18 @@ body {
   opacity: 1;
   transition: 0.6s; }
 
-/* line 165, styles/sass/main.scss */
+/* line 168, styles/sass/main.scss */
 .added {
   background: #018e42; }
 
-/* line 168, styles/sass/main.scss */
+/* line 171, styles/sass/main.scss */
 .deleted {
   background: #f03a47; }
 
-/* line 172, styles/sass/main.scss */
+/* line 175, styles/sass/main.scss */
 .d-none {
   display: none; }
 
-/* line 175, styles/sass/main.scss */
+/* line 178, styles/sass/main.scss */
 .hide {
   opacity: 0; }
