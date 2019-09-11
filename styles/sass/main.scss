@@ -62,6 +62,9 @@ body {
 
   .note {
     flex-basis: 20%;
+    @media screen and (max-width: 576px) {
+      flex-basis: 100%;
+    }
     padding: 1rem;
 
     &__inner {
