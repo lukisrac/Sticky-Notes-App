@@ -40,11 +40,13 @@ const getNotes = (note, id) => {
 // Add note and save it to the database
 const addNote = e => {
   e.preventDefault();
+  // Create object from form values
   const note = {
     title: form.title.value.trim(),
     content: form.description.value
   };
 
+  // Passing created object and save it to database
   db.collection('notes')
     .add(note)
     .then(() => {
@@ -88,13 +90,7 @@ const deleteNoteHTML = id => {
   });
 };
 
-// Listening for events
-notes.addEventListener('click', deleteNote);
-addButton.addEventListener('click', openForm);
-form.addEventListener('click', closeForm);
-form.addEventListener('submit', addNote);
-
-// Get data from database
+// Listening from database for changes and updating page
 db.collection('notes').onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
     const doc = change.doc;
@@ -105,3 +101,9 @@ db.collection('notes').onSnapshot(snapshot => {
     }
   });
 });
+
+// Listening for events
+notes.addEventListener('click', deleteNote);
+addButton.addEventListener('click', openForm);
+form.addEventListener('click', closeForm);
+form.addEventListener('submit', addNote);
