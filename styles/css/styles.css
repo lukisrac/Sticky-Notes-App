@@ -21,7 +21,7 @@ body {
 
 /* line 27, styles/sass/main.scss */
 .add {
-  position: absolute;
+  position: fixed;
   bottom: 2rem;
   right: 2rem;
   width: 3rem;
