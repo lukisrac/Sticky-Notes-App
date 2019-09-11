@@ -20,17 +20,13 @@ const closeForm = e => {
   }
 };
 
-// Add note
-const addNote = e => {
-  e.preventDefault();
-  const title = form.title.value.trim();
-  const content = form.description.value;
-
-  let note = `
-  <div class="note">
+// Get notes
+const getNotes = (note, id) => {
+  let html = `
+  <div data-id="${id}" class="note">
   <div class="note__inner">
-      <h3 class="note__title">${title}</h3>
-      <p class="note__text">${content}</p>
+      <h3 class="note__title">${note.title}</h3>
+      <p class="note__text">${note.content}</p>
       <div class="note__footer">
           <i class="icon delete fas fa-trash-alt"></i>
       </div>
@@ -38,33 +34,74 @@ const addNote = e => {
 </div>
   `;
 
-  notes.innerHTML += note;
-  formContainer.classList.add('d-none');
-  form.reset();
-  addAlert.classList.remove('d-none');
-  addAlert.classList.remove('hide');
-  setTimeout(() => {
-    addAlert.classList.add('hide');
-  }, 2000);
+  notes.innerHTML += html;
 };
 
-// Remove note
-const removeNote = e => {
+// Add note and save it to the database
+const addNote = e => {
+  e.preventDefault();
+  const note = {
+    title: form.title.value.trim(),
+    content: form.description.value
+  };
+
+  db.collection('notes')
+    .add(note)
+    .then(() => {
+      console.log('Note added');
+      formContainer.classList.add('d-none');
+      form.reset();
+      addAlert.classList.remove('d-none');
+      addAlert.classList.remove('hide');
+      setTimeout(() => {
+        addAlert.classList.add('hide');
+      }, 2000);
+    })
+    .catch(err => console.log(err));
+};
+
+// Delete note from database
+const deleteNote = e => {
   if (e.target.classList.contains('delete') && confirm('Are you sure you want to delete this note?')) {
-    e.target.parentNode.parentNode.parentNode.remove();
-    deleteAlert.classList.remove('d-none');
-    deleteAlert.classList.remove('hide');
-    setTimeout(() => {
-      deleteAlert.classList.add('hide');
-    }, 2000);
+    const id = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
+    db.collection('notes')
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log('Note deleted');
+        deleteAlert.classList.remove('d-none');
+        deleteAlert.classList.remove('hide');
+        setTimeout(() => {
+          deleteAlert.classList.add('hide');
+        }, 2000);
+      });
   }
 };
 
-// Edit note
+// Delete note from page
+const deleteNoteHTML = id => {
+  const notes = document.querySelectorAll('.note');
+  notes.forEach(note => {
+    if (note.getAttribute('data-id') === id) {
+      note.remove();
+    }
+  });
+};
 
 // Listening for events
-notes.addEventListener('click', removeNote);
-//notes.addEventListener('click', editNote);
+notes.addEventListener('click', deleteNote);
 addButton.addEventListener('click', openForm);
 form.addEventListener('click', closeForm);
 form.addEventListener('submit', addNote);
+
+// Get data from database
+db.collection('notes').onSnapshot(snapshot => {
+  snapshot.docChanges().forEach(change => {
+    const doc = change.doc;
+    if (change.type === 'added') {
+      getNotes(doc.data(), doc.id);
+    } else if (change.type === 'removed') {
+      deleteNoteHTML(doc.id);
+    }
+  });
+});

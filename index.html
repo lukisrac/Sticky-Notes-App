@@ -17,21 +17,7 @@
 
     <main>
         <div class="container">
-            <div class="notes__wrapper">
-                <div class="note">
-                    <div class="note__inner">
-                        <h3 class="note__title">Note Heading</h3>
-                        <p class="note__text">Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Possimus aliquid
-                            temporibus iste reiciendis consequuntur expedita odit vel illo, et corporis molestiae sint.
-                        </p>
-                        <div class="note__footer">
-                            <!-- <i class="icon edit fas fa-pen"></i> -->
-                            <i class="icon delete fas fa-trash-alt"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="notes__wrapper"></div>
         </div>
     </main>
 
@@ -62,6 +48,22 @@
     <div class="alert added d-none">Note was added</div>
     <div class="alert deleted d-none">Note was deleted</div>
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCJ1sN9qh4CRWrZCbJLsjVgCtINzgo0K_g",
+            authDomain: "sticky-notes-b2ef6.firebaseapp.com",
+            databaseURL: "https://sticky-notes-b2ef6.firebaseio.com",
+            projectId: "sticky-notes-b2ef6",
+            storageBucket: "",
+            messagingSenderId: "68601759932",
+            appId: "1:68601759932:web:e0af7bf61be134da3428b9"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
     <script src="https://kit.fontawesome.com/adac62cc78.js"></script>
     <script src="scripts/app.js"></script>
 </body>
