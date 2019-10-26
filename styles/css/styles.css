@@ -180,10 +180,14 @@ body {
 .deleted {
   background: #f03a47; }
 
-/* line 177, styles/sass/main.scss */
+/* line 176, styles/sass/main.scss */
+.updated {
+  background: #ff9800; }
+
+/* line 180, styles/sass/main.scss */
 .d-none {
   display: none; }
 
-/* line 180, styles/sass/main.scss */
+/* line 183, styles/sass/main.scss */
 .hide {
   opacity: 0; }

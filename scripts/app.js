@@ -2,21 +2,36 @@ const addButton = document.querySelector('button.add');
 const notes = document.querySelector('.notes__wrapper');
 const formContainer = document.querySelector('.form__wrapper');
 const form = document.querySelector('.add-note');
-const edit = document.querySelector('.edit');
+const editFormContainer = document.querySelector('.edit-form__wrapper');
+const editForm = document.querySelector('.edit-note');
 const alerts = document.querySelectorAll('.alert');
 const addAlert = document.querySelector('.alert.added');
+const editAlert = document.querySelector('.alert.updated');
 const deleteAlert = document.querySelector('.alert.deleted');
 
-// Open form
+// Open add form
 const openForm = () => {
   formContainer.classList.remove('d-none');
 };
 
-// Close form
+// Open edit form
+const openEditForm = () => {
+  editFormContainer.classList.remove('d-none');
+};
+
+// Close add form
 const closeForm = e => {
   if (e.target.classList.contains('close')) {
     formContainer.classList.add('d-none');
     form.reset();
+  }
+};
+
+// Close edit form
+const closeEditForm = e => {
+  if (e.target.classList.contains('close')) {
+    editFormContainer.classList.add('d-none');
+    editForm.reset();
   }
 };
 
@@ -28,6 +43,7 @@ const getNotes = (note, id) => {
       <h3 class="note__title">${note.title}</h3>
       <p class="note__text">${note.content}</p>
       <div class="note__footer">
+          <i class="icon edit fas fa-pen"></i>
           <i class="icon delete fas fa-trash-alt"></i>
       </div>
   </div>
@@ -90,11 +106,46 @@ const deleteNoteHTML = id => {
   });
 };
 
+// Edit note
+const editNote = e => {
+  const note = e.target.parentElement.parentElement.parentElement;
+  const id = note.getAttribute('data-id');
+  const noteContainer = e.target.parentElement.parentElement;
+  const title = noteContainer.querySelector('.note__title').innerHTML;
+  const description = noteContainer.querySelector('.note__text').innerHTML;
+  editForm.title.value = title;
+  editForm.description.textContent = description;
+  if (e.target.classList.contains('edit')) {
+    openEditForm();
+    editForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const thisNote = db.collection('notes').doc(id);
+      return thisNote
+        .update({
+          title: editForm.title.value.trim(),
+          content: editForm.description.value
+        })
+        .then(() => {
+          console.log('Note updated');
+          //const updatedNote = e.target.parentElement.parentElement.querySelector(`[data-id="${id}"]`);
+          editFormContainer.classList.add('d-none');
+          editForm.reset();
+          editAlert.classList.remove('d-none');
+          editAlert.classList.remove('hide');
+          setTimeout(() => {
+            editAlert.classList.add('hide');
+          }, 2000);
+        })
+        .catch(err => console.log(err));
+    });
+  }
+};
+
 // Listening from database for changes and updating page
 db.collection('notes').onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
     const doc = change.doc;
-    if (change.type === 'added') {
+    if (change.type === 'added' || change.type === 'modified') {
       getNotes(doc.data(), doc.id);
     } else if (change.type === 'removed') {
       deleteNoteHTML(doc.id);
@@ -103,7 +154,9 @@ db.collection('notes').onSnapshot(snapshot => {
 });
 
 // Listening for events
+notes.addEventListener('click', editNote);
 notes.addEventListener('click', deleteNote);
 addButton.addEventListener('click', openForm);
 form.addEventListener('click', closeForm);
+editForm.addEventListener('click', closeEditForm);
 form.addEventListener('submit', addNote);

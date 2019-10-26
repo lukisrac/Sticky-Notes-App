@@ -2,70 +2,71 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Notes App</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Notes App</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/css/styles.css">
 </head>
 
 <body>
 
-    <header class="header">Sticky Notes</header>
+  <header class="header">Sticky Notes</header>
 
-    <main>
-        <div class="container">
-            <div class="notes__wrapper"></div>
-        </div>
-    </main>
-
-    <button class="add" title="Add new note">+</button>
-
-    <div class="form__wrapper d-none">
-        <form class="add-note">
-            <span class="close">&Cross;</span>
-            <label for="title">Enter title</label>
-            <input type="text" id="title" class="input" autocomplete="off">
-            <label for="description">Enter description</label>
-            <textarea id="description" cols="30" rows="10"></textarea>
-            <input type="submit" value="Add note" class="submit">
-        </form>
+  <main>
+    <div class="container">
+      <div class="notes__wrapper"></div>
     </div>
+  </main>
 
-    <div class="edit-form__wrapper d-none">
-        <form class="edit-note">
-            <span class="close">&Cross;</span>
-            <label for="title">Enter title</label>
-            <input type="text" id="title" class="input" autocomplete="off">
-            <label for="description">Enter description</label>
-            <textarea id="description" cols="30" rows="10"></textarea>
-            <input type="submit" value="Edit note" class="submit">
-        </form>
-    </div>
+  <button class="add" title="Add new note">+</button>
 
-    <div class="alert added d-none">Note was added</div>
-    <div class="alert deleted d-none">Note was deleted</div>
+  <div class="form__wrapper d-none">
+    <form class="add-note">
+      <span class="close">&Cross;</span>
+      <label for="title">Enter title</label>
+      <input type="text" id="title" class="input" autocomplete="off">
+      <label for="description">Enter description</label>
+      <textarea id="description" cols="30" rows="10"></textarea>
+      <input type="submit" value="Add note" class="submit">
+    </form>
+  </div>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
-    <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyCJ1sN9qh4CRWrZCbJLsjVgCtINzgo0K_g",
-            authDomain: "sticky-notes-b2ef6.firebaseapp.com",
-            databaseURL: "https://sticky-notes-b2ef6.firebaseio.com",
-            projectId: "sticky-notes-b2ef6",
-            storageBucket: "",
-            messagingSenderId: "68601759932",
-            appId: "1:68601759932:web:e0af7bf61be134da3428b9"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-    </script>
-    <script src="https://kit.fontawesome.com/adac62cc78.js"></script>
-    <script src="scripts/app.js"></script>
+  <div class="edit-form__wrapper d-none">
+    <form class="edit-note">
+      <span class="close">&Cross;</span>
+      <label for="title">Enter title</label>
+      <input type="text" id="title" class="input" autocomplete="off">
+      <label for="description">Enter description</label>
+      <textarea id="description" cols="30" rows="10"></textarea>
+      <input type="submit" value="Edit note" class="submit">
+    </form>
+  </div>
+
+  <div class="alert added d-none">Note was added</div>
+  <div class="alert updated d-none">Note was updated</div>
+  <div class="alert deleted d-none">Note was deleted</div>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyCJ1sN9qh4CRWrZCbJLsjVgCtINzgo0K_g",
+      authDomain: "sticky-notes-b2ef6.firebaseapp.com",
+      databaseURL: "https://sticky-notes-b2ef6.firebaseio.com",
+      projectId: "sticky-notes-b2ef6",
+      storageBucket: "",
+      messagingSenderId: "68601759932",
+      appId: "1:68601759932:web:e0af7bf61be134da3428b9"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+  <script src="https://kit.fontawesome.com/adac62cc78.js"></script>
+  <script src="scripts/app.js"></script>
 </body>
 
 </html>
