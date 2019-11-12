@@ -1,3 +1,8 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const elems = document.querySelectorAll('.modal');
+  M.Modal.init(elems);
+});
+
 const addButton = document.querySelector('button.add');
 const notes = document.querySelector('.notes__wrapper');
 const formContainer = document.querySelector('.form__wrapper');

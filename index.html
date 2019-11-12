@@ -8,10 +8,55 @@
   <title>Notes App</title>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <link rel="stylesheet" href="styles/css/styles.css">
 </head>
 
 <body>
+
+  <nav class="nav">
+    <ul class="nav__list right">
+      <li class="logged-out"><a href="#" class="nav__link modal-trigger" data-target="modal-login">Login</a></li>
+      <li class="logged-out"><a href="#" class="nav__link modal-trigger" data-target="modal-signup">Sign up</a></li>
+      <li class="logged-in"><a href="#" class="nav__link modal-trigger">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Login modal -->
+  <div id="modal-login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4>
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Your password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Signup modal -->
+  <div id="modal-signup" class="modal">
+    <div class="modal-content">
+      <h4>Sign up</h4>
+      <form id="signup-form">
+        <div class="input-field">
+          <input type="email" id="signup-email" required />
+          <label for="signup-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="signup-password" required />
+          <label for="signup-password">Choose password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+      </form>
+    </div>
+  </div>
 
   <header class="header">Sticky Notes</header>
 
@@ -65,6 +110,7 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://kit.fontawesome.com/adac62cc78.js"></script>
   <script src="scripts/app.js"></script>
 </body>
