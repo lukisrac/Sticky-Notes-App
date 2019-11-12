@@ -3,6 +3,20 @@ document.addEventListener('DOMContentLoaded', () => {
   M.Modal.init(elems);
 });
 
+// Show/hide links
+const setupLinks = user => {
+  const loggedInLinks = document.querySelectorAll('.logged-in');
+  const loggedOutLinks = document.querySelectorAll('.logged-out');
+
+  if (user) {
+    loggedInLinks.forEach(link => (link.style.display = 'block'));
+    loggedOutLinks.forEach(link => (link.style.display = 'none'));
+  } else {
+    loggedInLinks.forEach(link => (link.style.display = 'none'));
+    loggedOutLinks.forEach(link => (link.style.display = 'block'));
+  }
+};
+
 const addButton = document.querySelector('button.add');
 const notes = document.querySelector('.notes__wrapper');
 const formContainer = document.querySelector('.form__wrapper');
@@ -118,8 +132,8 @@ const editNote = e => {
   const noteContainer = e.target.parentElement.parentElement;
   const title = noteContainer.querySelector('.note__title').innerHTML;
   const description = noteContainer.querySelector('.note__text').innerHTML;
-  editForm.title.value = title;
-  editForm.description.textContent = description;
+  editForm['edit-title'].value = title;
+  editForm['edit-description'].textContent = description;
   if (e.target.classList.contains('edit')) {
     openEditForm();
     editForm.addEventListener('submit', e => {
@@ -127,8 +141,8 @@ const editNote = e => {
       const thisNote = db.collection('notes').doc(id);
       return thisNote
         .update({
-          title: editForm.title.value.trim(),
-          content: editForm.description.value
+          title: editForm['edit-title'].value.trim(),
+          content: editForm['edit-description'].value
         })
         .then(() => {
           console.log('Note updated');
@@ -146,7 +160,7 @@ const editNote = e => {
   }
 };
 
-// Listening from database for changes and updating page
+/* // Listening from database for changes and updating page
 db.collection('notes').onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
     const doc = change.doc;
@@ -156,7 +170,7 @@ db.collection('notes').onSnapshot(snapshot => {
       deleteNoteHTML(doc.id);
     }
   });
-});
+}); */
 
 // Listening for events
 notes.addEventListener('click', editNote);
