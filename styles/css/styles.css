@@ -40,6 +40,10 @@ body {
     transform: translateZ(0) scale(1.1); }
 
 /* line 47, styles/sass/main.scss */
+.nav__item {
+  display: none; }
+
+/* line 50, styles/sass/main.scss */
 .header {
   width: 100%;
   padding: 2rem 0;
@@ -49,48 +53,49 @@ body {
   font-weight: bold;
   letter-spacing: 0.2rem; }
 
-/* line 56, styles/sass/main.scss */
+/* line 59, styles/sass/main.scss */
 .container {
   max-width: 90%;
+  width: 100%;
   margin: 0 auto;
   padding-bottom: 5rem; }
 
-/* line 61, styles/sass/main.scss */
+/* line 65, styles/sass/main.scss */
 .notes__wrapper {
   display: flex;
   flex-flow: row wrap; }
-  /* line 65, styles/sass/main.scss */
+  /* line 69, styles/sass/main.scss */
   .notes__wrapper .note {
     flex-basis: 20%;
     padding: 1rem; }
     @media screen and (max-width: 576px) {
-      /* line 65, styles/sass/main.scss */
+      /* line 69, styles/sass/main.scss */
       .notes__wrapper .note {
         flex-basis: 100%; } }
-    /* line 72, styles/sass/main.scss */
+    /* line 76, styles/sass/main.scss */
     .notes__wrapper .note__inner {
       background: #e6af2e;
       min-height: 18rem;
       padding: 1.5rem;
       box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
       position: relative; }
-    /* line 79, styles/sass/main.scss */
+    /* line 83, styles/sass/main.scss */
     .notes__wrapper .note__title {
       font-size: 1.4rem;
       margin-bottom: 0.8rem; }
-    /* line 83, styles/sass/main.scss */
+    /* line 87, styles/sass/main.scss */
     .notes__wrapper .note__footer {
       display: flex;
       justify-content: flex-end;
       position: absolute;
       bottom: 1rem;
       right: 1rem; }
-      /* line 90, styles/sass/main.scss */
+      /* line 94, styles/sass/main.scss */
       .notes__wrapper .note__footer .icon {
         margin: 0 0.5rem;
         cursor: pointer; }
 
-/* line 97, styles/sass/main.scss */
+/* line 101, styles/sass/main.scss */
 .form__wrapper,
 .edit-form__wrapper {
   position: absolute;
@@ -103,7 +108,7 @@ body {
   justify-content: center;
   align-items: center; }
 
-/* line 109, styles/sass/main.scss */
+/* line 113, styles/sass/main.scss */
 .add-note,
 .edit-note {
   background: #fff;
@@ -113,7 +118,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative; }
-  /* line 119, styles/sass/main.scss */
+  /* line 123, styles/sass/main.scss */
   .add-note .close,
   .edit-note .close {
     position: absolute;
@@ -121,28 +126,11 @@ body {
     right: 1rem;
     font-size: 2rem;
     cursor: pointer; }
-  /* line 126, styles/sass/main.scss */
+  /* line 130, styles/sass/main.scss */
   .add-note label,
   .edit-note label {
     margin-bottom: 0.5rem; }
-  /* line 129, styles/sass/main.scss */
-  .add-note .input,
-  .add-note textarea,
-  .edit-note .input,
-  .edit-note textarea {
-    padding: 0.5rem;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: all 0.2s;
-    resize: none; }
-    /* line 137, styles/sass/main.scss */
-    .add-note .input:focus,
-    .add-note textarea:focus,
-    .edit-note .input:focus,
-    .edit-note textarea:focus {
-      border-color: #3d348b;
-      box-shadow: 0 0 0 0.2rem rgba(61, 52, 139, 0.25); }
-  /* line 142, styles/sass/main.scss */
+  /* line 133, styles/sass/main.scss */
   .add-note .submit,
   .edit-note .submit {
     align-self: flex-end;
@@ -155,12 +143,12 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s; }
-    /* line 154, styles/sass/main.scss */
+    /* line 145, styles/sass/main.scss */
     .add-note .submit:hover,
     .edit-note .submit:hover {
       background: #352d78; }
 
-/* line 159, styles/sass/main.scss */
+/* line 150, styles/sass/main.scss */
 .alert {
   border-radius: 0.25rem;
   position: absolute;
@@ -172,22 +160,22 @@ body {
   opacity: 1;
   transition: 0.6s; }
 
-/* line 170, styles/sass/main.scss */
+/* line 161, styles/sass/main.scss */
 .added {
   background: #018e42; }
 
-/* line 173, styles/sass/main.scss */
+/* line 164, styles/sass/main.scss */
 .deleted {
   background: #f03a47; }
 
-/* line 176, styles/sass/main.scss */
+/* line 167, styles/sass/main.scss */
 .updated {
   background: #ff9800; }
 
-/* line 180, styles/sass/main.scss */
+/* line 171, styles/sass/main.scss */
 .d-none {
   display: none; }
 
-/* line 183, styles/sass/main.scss */
+/* line 174, styles/sass/main.scss */
 .hide {
   opacity: 0; }

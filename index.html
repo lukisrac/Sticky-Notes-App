@@ -16,9 +16,11 @@
 
   <nav class="nav">
     <ul class="nav__list right">
-      <li class="logged-out"><a href="#" class="nav__link modal-trigger" data-target="modal-login">Login</a></li>
-      <li class="logged-out"><a href="#" class="nav__link modal-trigger" data-target="modal-signup">Sign up</a></li>
-      <li class="logged-in"><a href="#" class="nav__link modal-trigger">Logout</a></li>
+      <li class="logged-out nav__item"><a href="#" class="nav__link modal-trigger" data-target="modal-login">Login</a>
+      </li>
+      <li class="logged-out nav__item"><a href="#" class="nav__link modal-trigger" data-target="modal-signup">Sign
+          up</a></li>
+      <li class="logged-in nav__item"><a href="#" class="nav__link" id="logout">Logout</a></li>
     </ul>
   </nav>
 
@@ -71,10 +73,14 @@
   <div class="form__wrapper d-none">
     <form class="add-note">
       <span class="close">&Cross;</span>
-      <label for="title">Enter title</label>
-      <input type="text" id="title" class="input" autocomplete="off">
-      <label for="description">Enter description</label>
-      <textarea id="description" cols="30" rows="10"></textarea>
+      <div class="input-field">
+        <label for="title">Enter title</label>
+        <input type="text" id="title" class="input" autocomplete="off">
+      </div>
+      <div class="input-field">
+        <label for="description">Enter description</label>
+        <textarea class="materialize-textarea" id="description" cols="30" rows="10"></textarea>
+      </div>
       <input type="submit" value="Add note" class="submit">
     </form>
   </div>
@@ -82,10 +88,14 @@
   <div class="edit-form__wrapper d-none">
     <form class="edit-note">
       <span class="close">&Cross;</span>
-      <label for="title">Enter title</label>
-      <input type="text" id="title" class="input" autocomplete="off">
-      <label for="description">Enter description</label>
-      <textarea id="description" cols="30" rows="10"></textarea>
+      <div class="input-field">
+        <label for="edit-title" class="active">Enter title</label>
+        <input type="text" id="edit-title" class="input" autocomplete="off">
+      </div>
+      <div class="input-field">
+        <label for="edit-description" class="active">Enter description</label>
+        <textarea class="materialize-textarea" id="edit-description" cols="30" rows="10"></textarea>
+      </div>
       <input type="submit" value="Edit note" class="submit">
     </form>
   </div>
@@ -96,6 +106,7 @@
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
   <script>
     var firebaseConfig = {
@@ -108,10 +119,12 @@
       appId: "1:68601759932:web:e0af7bf61be134da3428b9"
     };
     firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
     const db = firebase.firestore();
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://kit.fontawesome.com/adac62cc78.js"></script>
+  <script src="scripts/auth.js"></script>
   <script src="scripts/app.js"></script>
 </body>
 

@@ -44,6 +44,9 @@ body {
     transform: translateZ(0) scale(1.1);
   }
 }
+.nav__item {
+  display: none;
+}
 .header {
   width: 100%;
   padding: 2rem 0;
@@ -55,6 +58,7 @@ body {
 }
 .container {
   max-width: 90%;
+  width: 100%;
   margin: 0 auto;
   padding-bottom: 5rem;
 }
@@ -125,19 +129,6 @@ body {
   }
   label {
     margin-bottom: 0.5rem;
-  }
-  .input,
-  textarea {
-    padding: 0.5rem;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: all 0.2s;
-    resize: none;
-
-    &:focus {
-      border-color: $button-bg;
-      box-shadow: 0 0 0 0.2rem rgba($button-bg, 0.25);
-    }
   }
   .submit {
     align-self: flex-end;
