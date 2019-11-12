@@ -11,10 +11,12 @@ auth.onAuthStateChanged(user => {
           deleteNoteHTML(doc.id);
         }
       });
+      error.style.display = 'none';
       setupLinks(user);
     });
   } else {
     notes.innerHTML = '';
+    error.style.display = 'block';
     setupLinks();
   }
 });

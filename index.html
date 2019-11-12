@@ -1,131 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Notes App</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="styles/css/styles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Notes App</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <link rel="stylesheet" href="styles/css/styles.css">
-</head>
+  <body>
+    <nav class="nav">
+      <ul class="nav__list right">
+        <li class="logged-out nav__item">
+          <a href="#" class="nav__link modal-trigger" data-target="modal-login"
+            >Login</a
+          >
+        </li>
+        <li class="logged-out nav__item">
+          <a href="#" class="nav__link modal-trigger" data-target="modal-signup"
+            >Sign up</a
+          >
+        </li>
+        <li class="logged-in nav__item">
+          <a href="#" class="nav__link" id="logout">Logout</a>
+        </li>
+      </ul>
+    </nav>
 
-<body>
+    <!-- Login modal -->
+    <div id="modal-login" class="modal">
+      <div class="modal-content">
+        <h4>Login</h4>
+        <form id="login-form">
+          <div class="input-field">
+            <input type="email" id="login-email" required />
+            <label for="login-email">Email address</label>
+          </div>
+          <div class="input-field">
+            <input type="password" id="login-password" required />
+            <label for="login-password">Your password</label>
+          </div>
+          <button class="btn yellow darken-2 z-depth-0">Login</button>
+        </form>
+      </div>
+    </div>
 
-  <nav class="nav">
-    <ul class="nav__list right">
-      <li class="logged-out nav__item"><a href="#" class="nav__link modal-trigger" data-target="modal-login">Login</a>
-      </li>
-      <li class="logged-out nav__item"><a href="#" class="nav__link modal-trigger" data-target="modal-signup">Sign
-          up</a></li>
-      <li class="logged-in nav__item"><a href="#" class="nav__link" id="logout">Logout</a></li>
-    </ul>
-  </nav>
+    <!-- Signup modal -->
+    <div id="modal-signup" class="modal">
+      <div class="modal-content">
+        <h4>Sign up</h4>
+        <form id="signup-form">
+          <div class="input-field">
+            <input type="email" id="signup-email" required />
+            <label for="signup-email">Email address</label>
+          </div>
+          <div class="input-field">
+            <input type="password" id="signup-password" required />
+            <label for="signup-password">Choose password</label>
+          </div>
+          <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+        </form>
+      </div>
+    </div>
 
-  <!-- Login modal -->
-  <div id="modal-login" class="modal">
-    <div class="modal-content">
-      <h4>Login</h4>
-      <form id="login-form">
+    <header class="header">Sticky Notes</header>
+
+    <main>
+      <div class="container">
+        <h5 class="error">You need to login to view notes!</h5>
+        <div class="notes__wrapper"></div>
+      </div>
+    </main>
+
+    <button class="add" title="Add new note">+</button>
+
+    <div class="form__wrapper d-none">
+      <form class="add-note">
+        <span class="close">&Cross;</span>
         <div class="input-field">
-          <input type="email" id="login-email" required />
-          <label for="login-email">Email address</label>
+          <label for="title">Enter title</label>
+          <input type="text" id="title" class="input" autocomplete="off" />
         </div>
         <div class="input-field">
-          <input type="password" id="login-password" required />
-          <label for="login-password">Your password</label>
+          <label for="description">Enter description</label>
+          <textarea
+            class="materialize-textarea"
+            id="description"
+            cols="30"
+            rows="10"
+          ></textarea>
         </div>
-        <button class="btn yellow darken-2 z-depth-0">Login</button>
+        <input type="submit" value="Add note" class="submit" />
       </form>
     </div>
-  </div>
 
-  <!-- Signup modal -->
-  <div id="modal-signup" class="modal">
-    <div class="modal-content">
-      <h4>Sign up</h4>
-      <form id="signup-form">
+    <div class="edit-form__wrapper d-none">
+      <form class="edit-note">
+        <span class="close">&Cross;</span>
         <div class="input-field">
-          <input type="email" id="signup-email" required />
-          <label for="signup-email">Email address</label>
+          <label for="edit-title" class="active">Enter title</label>
+          <input type="text" id="edit-title" class="input" autocomplete="off" />
         </div>
         <div class="input-field">
-          <input type="password" id="signup-password" required />
-          <label for="signup-password">Choose password</label>
+          <label for="edit-description" class="active">Enter description</label>
+          <textarea
+            class="materialize-textarea"
+            id="edit-description"
+            cols="30"
+            rows="10"
+          ></textarea>
         </div>
-        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+        <input type="submit" value="Edit note" class="submit" />
       </form>
     </div>
-  </div>
 
-  <header class="header">Sticky Notes</header>
+    <div class="alert added d-none">Note was added</div>
+    <div class="alert updated d-none">Note was updated</div>
+    <div class="alert deleted d-none">Note was deleted</div>
 
-  <main>
-    <div class="container">
-      <div class="notes__wrapper"></div>
-    </div>
-  </main>
-
-  <button class="add" title="Add new note">+</button>
-
-  <div class="form__wrapper d-none">
-    <form class="add-note">
-      <span class="close">&Cross;</span>
-      <div class="input-field">
-        <label for="title">Enter title</label>
-        <input type="text" id="title" class="input" autocomplete="off">
-      </div>
-      <div class="input-field">
-        <label for="description">Enter description</label>
-        <textarea class="materialize-textarea" id="description" cols="30" rows="10"></textarea>
-      </div>
-      <input type="submit" value="Add note" class="submit">
-    </form>
-  </div>
-
-  <div class="edit-form__wrapper d-none">
-    <form class="edit-note">
-      <span class="close">&Cross;</span>
-      <div class="input-field">
-        <label for="edit-title" class="active">Enter title</label>
-        <input type="text" id="edit-title" class="input" autocomplete="off">
-      </div>
-      <div class="input-field">
-        <label for="edit-description" class="active">Enter description</label>
-        <textarea class="materialize-textarea" id="edit-description" cols="30" rows="10"></textarea>
-      </div>
-      <input type="submit" value="Edit note" class="submit">
-    </form>
-  </div>
-
-  <div class="alert added d-none">Note was added</div>
-  <div class="alert updated d-none">Note was updated</div>
-  <div class="alert deleted d-none">Note was deleted</div>
-
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
-  <script>
-    var firebaseConfig = {
-      apiKey: "AIzaSyCJ1sN9qh4CRWrZCbJLsjVgCtINzgo0K_g",
-      authDomain: "sticky-notes-b2ef6.firebaseapp.com",
-      databaseURL: "https://sticky-notes-b2ef6.firebaseio.com",
-      projectId: "sticky-notes-b2ef6",
-      storageBucket: "",
-      messagingSenderId: "68601759932",
-      appId: "1:68601759932:web:e0af7bf61be134da3428b9"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="https://kit.fontawesome.com/adac62cc78.js"></script>
-  <script src="scripts/auth.js"></script>
-  <script src="scripts/app.js"></script>
-</body>
-
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: 'AIzaSyCJ1sN9qh4CRWrZCbJLsjVgCtINzgo0K_g',
+        authDomain: 'sticky-notes-b2ef6.firebaseapp.com',
+        databaseURL: 'https://sticky-notes-b2ef6.firebaseio.com',
+        projectId: 'sticky-notes-b2ef6',
+        storageBucket: '',
+        messagingSenderId: '68601759932',
+        appId: '1:68601759932:web:e0af7bf61be134da3428b9',
+      };
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://kit.fontawesome.com/adac62cc78.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
 </html>

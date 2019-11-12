@@ -18,6 +18,7 @@ const setupLinks = user => {
 };
 
 const addButton = document.querySelector('button.add');
+const error = document.querySelector('h5.error');
 const notes = document.querySelector('.notes__wrapper');
 const formContainer = document.querySelector('.form__wrapper');
 const form = document.querySelector('.add-note');
@@ -78,7 +79,7 @@ const addNote = e => {
   // Create object from form values
   const note = {
     title: form.title.value.trim(),
-    content: form.description.value
+    content: form.description.value,
   };
 
   // Passing created object and save it to database
@@ -99,8 +100,13 @@ const addNote = e => {
 
 // Delete note from database
 const deleteNote = e => {
-  if (e.target.classList.contains('delete') && confirm('Are you sure you want to delete this note?')) {
-    const id = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
+  if (
+    e.target.classList.contains('delete') &&
+    confirm('Are you sure you want to delete this note?')
+  ) {
+    const id = e.target.parentElement.parentElement.parentElement.getAttribute(
+      'data-id'
+    );
     db.collection('notes')
       .doc(id)
       .delete()
@@ -142,7 +148,7 @@ const editNote = e => {
       return thisNote
         .update({
           title: editForm['edit-title'].value.trim(),
-          content: editForm['edit-description'].value
+          content: editForm['edit-description'].value,
         })
         .then(() => {
           console.log('Note updated');

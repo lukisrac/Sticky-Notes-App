@@ -15,7 +15,7 @@ $button-bg: #3d348b;
   text-decoration: none;
 }
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 400;
   color: $font-color;
   line-height: 1.5rem;
@@ -61,6 +61,11 @@ body {
   width: 100%;
   margin: 0 auto;
   padding-bottom: 5rem;
+}
+.error {
+  width: 100%;
+  display: none;
+  text-align: center;
 }
 .notes__wrapper {
   display: flex;
