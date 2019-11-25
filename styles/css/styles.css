@@ -10,7 +10,7 @@
 
 /* line 17, styles/sass/main.scss */
 body {
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 400;
   color: #191716;
   line-height: 1.5rem;
@@ -99,9 +99,10 @@ body {
       /* line 99, styles/sass/main.scss */
       .notes__wrapper .note__footer .icon {
         margin: 0 0.5rem;
-        cursor: pointer; }
+        cursor: pointer;
+        font-size: 1.3rem; }
 
-/* line 106, styles/sass/main.scss */
+/* line 107, styles/sass/main.scss */
 .form__wrapper,
 .edit-form__wrapper {
   position: absolute;
@@ -114,7 +115,7 @@ body {
   justify-content: center;
   align-items: center; }
 
-/* line 118, styles/sass/main.scss */
+/* line 119, styles/sass/main.scss */
 .add-note,
 .edit-note {
   background: #fff;
@@ -124,7 +125,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative; }
-  /* line 128, styles/sass/main.scss */
+  /* line 129, styles/sass/main.scss */
   .add-note .close,
   .edit-note .close {
     position: absolute;
@@ -132,11 +133,11 @@ body {
     right: 1rem;
     font-size: 2rem;
     cursor: pointer; }
-  /* line 135, styles/sass/main.scss */
+  /* line 136, styles/sass/main.scss */
   .add-note label,
   .edit-note label {
     margin-bottom: 0.5rem; }
-  /* line 138, styles/sass/main.scss */
+  /* line 139, styles/sass/main.scss */
   .add-note .submit,
   .edit-note .submit {
     align-self: flex-end;
@@ -149,12 +150,12 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s; }
-    /* line 150, styles/sass/main.scss */
+    /* line 151, styles/sass/main.scss */
     .add-note .submit:hover,
     .edit-note .submit:hover {
       background: #352d78; }
 
-/* line 155, styles/sass/main.scss */
+/* line 156, styles/sass/main.scss */
 .alert {
   border-radius: 0.25rem;
   position: absolute;
@@ -166,22 +167,22 @@ body {
   opacity: 1;
   transition: 0.6s; }
 
-/* line 166, styles/sass/main.scss */
+/* line 167, styles/sass/main.scss */
 .added {
   background: #018e42; }
 
-/* line 169, styles/sass/main.scss */
+/* line 170, styles/sass/main.scss */
 .deleted {
   background: #f03a47; }
 
-/* line 172, styles/sass/main.scss */
+/* line 173, styles/sass/main.scss */
 .updated {
   background: #ff9800; }
 
-/* line 176, styles/sass/main.scss */
+/* line 177, styles/sass/main.scss */
 .d-none {
   display: none; }
 
-/* line 179, styles/sass/main.scss */
+/* line 180, styles/sass/main.scss */
 .hide {
   opacity: 0; }

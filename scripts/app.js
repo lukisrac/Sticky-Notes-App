@@ -63,8 +63,8 @@ const getNotes = (note, id) => {
       <h3 class="note__title">${note.title}</h3>
       <p class="note__text">${note.content}</p>
       <div class="note__footer">
-          <i class="icon edit fas fa-pen"></i>
-          <i class="icon delete fas fa-trash-alt"></i>
+          <i class="icon edit material-icons">edit</i>
+          <i class="icon delete material-icons">delete</i>
       </div>
   </div>
 </div>
