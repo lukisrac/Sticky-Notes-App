@@ -43,6 +43,10 @@ body {
   &:hover {
     transform: translateZ(0) scale(1.1);
   }
+  &:active,
+  &:focus {
+    background: $button-bg;
+  }
 }
 .nav__item {
   display: none;
