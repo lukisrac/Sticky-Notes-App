@@ -19,6 +19,19 @@ auth.onAuthStateChanged(user => {
     error.style.display = 'block';
     setupLinks();
   }
+
+  // Hide preloader and show page
+  window.addEventListener('load', () => {
+    const preloader = document.querySelector('.preloader');
+    const page = document.querySelector('.page');
+    setTimeout(() => {
+      preloader.classList.add('loaded');
+      page.classList.add('loaded');
+    }, 1000);
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 1500);
+  });
 });
 
 // Sign up
