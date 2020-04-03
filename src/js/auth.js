@@ -17,6 +17,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
+console.log(firebaseConfig);
 
 // Sign up
 const signUpForm = document.querySelector('#signup-form');
