@@ -1,10 +1,32 @@
+import 'materialize-css';
+// Firebase App (the core Firebase SDK)
+import * as firebase from 'firebase/app';
+// Firebase Firestore
+import 'firebase/firestore';
+import { auth } from './auth';
+
+const preloader = document.querySelector('.preloader');
+const page = document.querySelector('.page');
+const addButton = document.querySelector('button.add');
+const error = document.querySelector('h5.error');
+const notes = document.querySelector('.notes__wrapper');
+const formContainer = document.querySelector('.form__wrapper');
+const form = document.querySelector('.add-note');
+const editFormContainer = document.querySelector('.edit-form__wrapper');
+const editForm = document.querySelector('.edit-note');
+const addAlert = document.querySelector('.alert.added');
+const editAlert = document.querySelector('.alert.updated');
+const deleteAlert = document.querySelector('.alert.deleted');
+
+const db = firebase.firestore();
+
 document.addEventListener('DOMContentLoaded', () => {
   const elems = document.querySelectorAll('.modal');
   M.Modal.init(elems);
 });
 
 // Show/hide links
-const setupLinks = user => {
+export const setupLinks = user => {
   const loggedInLinks = document.querySelectorAll('.logged-in');
   const loggedOutLinks = document.querySelectorAll('.logged-out');
 
@@ -17,17 +39,43 @@ const setupLinks = user => {
   }
 };
 
-const addButton = document.querySelector('button.add');
-const error = document.querySelector('h5.error');
-const notes = document.querySelector('.notes__wrapper');
-const formContainer = document.querySelector('.form__wrapper');
-const form = document.querySelector('.add-note');
-const editFormContainer = document.querySelector('.edit-form__wrapper');
-const editForm = document.querySelector('.edit-note');
-const alerts = document.querySelectorAll('.alert');
-const addAlert = document.querySelector('.alert.added');
-const editAlert = document.querySelector('.alert.updated');
-const deleteAlert = document.querySelector('.alert.deleted');
+auth.onAuthStateChanged(user => {
+  if (user) {
+    // Listening from database for changes and updating page
+    db.collection('notes').onSnapshot(snapshot => {
+      snapshot.docChanges().forEach(change => {
+        const doc = change.doc;
+        if (change.type === 'added' || change.type === 'modified') {
+          getNotes(doc.data(), doc.id);
+        } else if (change.type === 'removed') {
+          deleteNoteHTML(doc.id);
+        }
+      });
+    });
+    error.style.display = 'none';
+    setupLinks(user);
+    // Hide preloader and show page
+    setTimeout(() => {
+      preloader.classList.add('loaded');
+      page.classList.add('loaded');
+    }, 1000);
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 1500);
+  } else {
+    notes.innerHTML = '';
+    error.style.display = 'block';
+    setupLinks();
+    // Hide preloader and show page
+    setTimeout(() => {
+      preloader.classList.add('loaded');
+      page.classList.add('loaded');
+    }, 1000);
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 1500);
+  }
+});
 
 // Open add form
 const openForm = () => {
@@ -165,18 +213,6 @@ const editNote = e => {
     });
   }
 };
-
-/* // Listening from database for changes and updating page
-db.collection('notes').onSnapshot(snapshot => {
-  snapshot.docChanges().forEach(change => {
-    const doc = change.doc;
-    if (change.type === 'added' || change.type === 'modified') {
-      getNotes(doc.data(), doc.id);
-    } else if (change.type === 'removed') {
-      deleteNoteHTML(doc.id);
-    }
-  });
-}); */
 
 // Listening for events
 notes.addEventListener('click', editNote);

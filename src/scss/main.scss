@@ -1,3 +1,5 @@
+@import '../../node_modules/materialize-css/dist/css/materialize.min.css';
+
 // VARIABLES
 $bg-color: #e0e2db;
 $font-color: #191716;
@@ -37,7 +39,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #242d35;
+  background: #ee6e73;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +57,7 @@ svg {
 
 circle {
   fill: none;
-  stroke: #5151e5cc;
+  stroke: #3d348b;
   stroke-width: 3;
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
