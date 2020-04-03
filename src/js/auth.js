@@ -16,19 +16,50 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+export const auth = firebase.auth();
 
-// Show/hide links
-const setupLinks = user => {
-  const loggedInLinks = document.querySelectorAll('.logged-in');
-  const loggedOutLinks = document.querySelectorAll('.logged-out');
+// Sign up
+const signUpForm = document.querySelector('#signup-form');
 
-  if (user) {
-    loggedInLinks.forEach(link => (link.style.display = 'block'));
-    loggedOutLinks.forEach(link => (link.style.display = 'none'));
-  } else {
-    loggedInLinks.forEach(link => (link.style.display = 'none'));
-    loggedOutLinks.forEach(link => (link.style.display = 'block'));
-  }
-};
+signUpForm.addEventListener('submit', e => {
+  e.preventDefault();
 
-setupLinks();
+  const email = signUpForm['signup-email'].value;
+  const password = signUpForm['signup-password'].value;
+
+  auth
+    .createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      const modal = document.querySelector('#modal-signup');
+      M.Modal.getInstance(modal).close();
+      signUpForm.reset();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+// Log in
+const loginForm = document.querySelector('#login-form');
+
+loginForm.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const email = loginForm['login-email'].value;
+  const password = loginForm['login-password'].value;
+
+  auth.signInWithEmailAndPassword(email, password).then(() => {
+    const modal = document.querySelector('#modal-login');
+    M.Modal.getInstance(modal).close();
+    loginForm.reset();
+  });
+});
+
+// Log out
+const logout = document.querySelector('#logout');
+
+logout.addEventListener('click', e => {
+  e.preventDefault();
+
+  auth.signOut();
+});
