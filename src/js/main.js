@@ -39,15 +39,33 @@ export const setupLinks = user => {
   }
 };
 
+const getStatus = () => {
+  db.collection('notes')
+    .get()
+    .then(doc => {
+      if (!doc.size) {
+        const p = document.createElement('p');
+        p.className = 'info-text';
+        p.textContent = 'No notes! Click + button to add one.';
+        notes.append(p);
+      } else {
+        notes.querySelector('p').style.display = 'none';
+      }
+    });
+};
+
 auth.onAuthStateChanged(user => {
   if (user) {
+    getStatus();
     // Listening from database for changes and updating page
     db.collection('notes').onSnapshot(snapshot => {
       snapshot.docChanges().forEach(change => {
         const doc = change.doc;
         if (change.type === 'added' || change.type === 'modified') {
+          getStatus();
           getNotes(doc.data(), doc.id);
         } else if (change.type === 'removed') {
+          getStatus();
           deleteNoteHTML(doc.id);
         }
       });

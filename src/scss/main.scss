@@ -134,6 +134,13 @@ circle {
   display: flex;
   flex-flow: row wrap;
 
+  .info-text {
+    flex-basis: 100%;
+    font-size: 1.65rem;
+    line-height: 110%;
+    margin: 1.0933333333rem 0 0.656rem 0;
+    text-align: center;
+  }
   .note {
     flex-basis: 20%;
     @media screen and (max-width: 576px) {

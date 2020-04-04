@@ -62,4 +62,5 @@ logout.addEventListener('click', e => {
   e.preventDefault();
 
   auth.signOut();
+  document.querySelector('.notes__wrapper p.info-text').style.display = 'none';
 });
