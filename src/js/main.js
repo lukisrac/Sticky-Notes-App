@@ -58,20 +58,22 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     getStatus();
     // Listening from database for changes and updating page
-    db.collection('notes').onSnapshot((snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        const doc = change.doc;
-        if (change.type === 'added') {
-          getStatus();
-          getNotes(doc.data(), doc.id);
-        } else if (change.type === 'modified') {
-          updateNote(change.doc);
-        } else if (change.type === 'removed') {
-          getStatus();
-          deleteNoteHTML(doc.id);
-        }
+    db.collection('notes')
+      .orderBy('created_at')
+      .onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          const doc = change.doc;
+          if (change.type === 'added') {
+            getStatus();
+            getNotes(doc.data(), doc.id);
+          } else if (change.type === 'modified') {
+            updateNote(change.doc);
+          } else if (change.type === 'removed') {
+            getStatus();
+            deleteNoteHTML(doc.id);
+          }
+        });
       });
-    });
     error.style.display = 'none';
     setupLinks(user);
     // Hide preloader and show page
@@ -145,9 +147,11 @@ const getNotes = (note, id) => {
 const addNote = (e) => {
   e.preventDefault();
   // Create object from form values
+  const now = new Date();
   const note = {
     title: form.title.value.trim(),
     content: form.description.value,
+    created_at: firebase.firestore.Timestamp.fromDate(now),
   };
 
   // Passing created object and save it to database
