@@ -26,23 +26,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Show/hide links
-export const setupLinks = user => {
+export const setupLinks = (user) => {
   const loggedInLinks = document.querySelectorAll('.logged-in');
   const loggedOutLinks = document.querySelectorAll('.logged-out');
 
   if (user) {
-    loggedInLinks.forEach(link => (link.style.display = 'block'));
-    loggedOutLinks.forEach(link => (link.style.display = 'none'));
+    loggedInLinks.forEach((link) => (link.style.display = 'block'));
+    loggedOutLinks.forEach((link) => (link.style.display = 'none'));
   } else {
-    loggedInLinks.forEach(link => (link.style.display = 'none'));
-    loggedOutLinks.forEach(link => (link.style.display = 'block'));
+    loggedInLinks.forEach((link) => (link.style.display = 'none'));
+    loggedOutLinks.forEach((link) => (link.style.display = 'block'));
   }
 };
 
 const getStatus = () => {
   db.collection('notes')
     .get()
-    .then(doc => {
+    .then((doc) => {
       if (!doc.size) {
         const p = document.createElement('p');
         p.className = 'info-text';
@@ -54,16 +54,18 @@ const getStatus = () => {
     });
 };
 
-auth.onAuthStateChanged(user => {
+auth.onAuthStateChanged((user) => {
   if (user) {
     getStatus();
     // Listening from database for changes and updating page
-    db.collection('notes').onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    db.collection('notes').onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         const doc = change.doc;
-        if (change.type === 'added' || change.type === 'modified') {
+        if (change.type === 'added') {
           getStatus();
           getNotes(doc.data(), doc.id);
+        } else if (change.type === 'modified') {
+          updateNote(change.doc);
         } else if (change.type === 'removed') {
           getStatus();
           deleteNoteHTML(doc.id);
@@ -106,7 +108,7 @@ const openEditForm = () => {
 };
 
 // Close add form
-const closeForm = e => {
+const closeForm = (e) => {
   if (e.target.classList.contains('close')) {
     formContainer.classList.add('d-none');
     form.reset();
@@ -114,7 +116,7 @@ const closeForm = e => {
 };
 
 // Close edit form
-const closeEditForm = e => {
+const closeEditForm = (e) => {
   if (e.target.classList.contains('close')) {
     editFormContainer.classList.add('d-none');
     editForm.reset();
@@ -140,7 +142,7 @@ const getNotes = (note, id) => {
 };
 
 // Add note and save it to the database
-const addNote = e => {
+const addNote = (e) => {
   e.preventDefault();
   // Create object from form values
   const note = {
@@ -161,11 +163,11 @@ const addNote = e => {
         addAlert.classList.add('hide');
       }, 2000);
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };
 
 // Delete note from database
-const deleteNote = e => {
+const deleteNote = (e) => {
   if (
     e.target.classList.contains('delete') &&
     confirm('Are you sure you want to delete this note?')
@@ -188,17 +190,17 @@ const deleteNote = e => {
 };
 
 // Delete note from page
-const deleteNoteHTML = id => {
+const deleteNoteHTML = (id) => {
   const notes = document.querySelectorAll('.note');
-  notes.forEach(note => {
+  notes.forEach((note) => {
     if (note.getAttribute('data-id') === id) {
       note.remove();
     }
   });
 };
 
-// Edit note
-const editNote = e => {
+// Update note in database
+const editNote = (e) => {
   const note = e.target.parentElement.parentElement.parentElement;
   const id = note.getAttribute('data-id');
   const noteContainer = e.target.parentElement.parentElement;
@@ -208,7 +210,7 @@ const editNote = e => {
   editForm['edit-description'].textContent = description;
   if (e.target.classList.contains('edit')) {
     openEditForm();
-    editForm.addEventListener('submit', e => {
+    editForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const thisNote = db.collection('notes').doc(id);
       return thisNote
@@ -217,8 +219,6 @@ const editNote = e => {
           content: editForm['edit-description'].value,
         })
         .then(() => {
-          console.log('Note updated');
-          //const updatedNote = e.target.parentElement.parentElement.querySelector(`[data-id="${id}"]`);
           editFormContainer.classList.add('d-none');
           editForm.reset();
           editAlert.classList.remove('d-none');
@@ -227,9 +227,20 @@ const editNote = e => {
             editAlert.classList.add('hide');
           }, 2000);
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     });
   }
+};
+
+// Update note in page
+const updateNote = (data) => {
+  console.log('note updated');
+  const updatedNote = notes.querySelector(`.note[data-id="${data.id}"]`);
+  const updatedData = data.data();
+  let title = updatedNote.querySelector('.note__title');
+  let description = updatedNote.querySelector('.note__text');
+  title.innerHTML = updatedData.title;
+  description.innerHTML = updatedData.content;
 };
 
 // Listening for events
