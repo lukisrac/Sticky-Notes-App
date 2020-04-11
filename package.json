@@ -43,6 +43,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "firebase": "^7.13.1",
-    "materialize-css": "^1.0.0-rc.2"
+    "materialize-css": "^1.0.0-rc.2",
+    "sweetalert": "^2.1.2"
   }
 }

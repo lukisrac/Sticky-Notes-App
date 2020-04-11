@@ -1,9 +1,8 @@
 import 'materialize-css';
-// Firebase App (the core Firebase SDK)
 import * as firebase from 'firebase/app';
-// Firebase Firestore
 import 'firebase/firestore';
 import { auth } from './auth';
+import swal from 'sweetalert';
 
 const preloader = document.querySelector('.preloader');
 const page = document.querySelector('.page');
@@ -172,24 +171,31 @@ const addNote = (e) => {
 
 // Delete note from database
 const deleteNote = (e) => {
-  if (
-    e.target.classList.contains('delete') &&
-    confirm('Are you sure you want to delete this note?')
-  ) {
-    const id = e.target.parentElement.parentElement.parentElement.getAttribute(
-      'data-id'
-    );
-    db.collection('notes')
-      .doc(id)
-      .delete()
-      .then(() => {
-        console.log('Note deleted');
-        deleteAlert.classList.remove('d-none');
-        deleteAlert.classList.remove('hide');
-        setTimeout(() => {
-          deleteAlert.classList.add('hide');
-        }, 2000);
-      });
+  if (e.target.classList.contains('delete')) {
+    swal({
+      title: 'Are you sure you want to delete this note?',
+      text: 'Once deleted, you will not be able to recover this note!',
+      icon: 'warning',
+      buttons: ['No', 'Yes, delete it!'],
+      dangerMode: true,
+    }).then((answer) => {
+      if (answer) {
+        const id = e.target.parentElement.parentElement.parentElement.getAttribute(
+          'data-id'
+        );
+        db.collection('notes')
+          .doc(id)
+          .delete()
+          .then(() => {
+            console.log('Note deleted');
+            deleteAlert.classList.remove('d-none');
+            deleteAlert.classList.remove('hide');
+            setTimeout(() => {
+              deleteAlert.classList.add('hide');
+            }, 2000);
+          });
+      }
+    });
   }
 };
 
