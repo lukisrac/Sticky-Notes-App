@@ -26,16 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Show/hide links
-export const setupLinks = (user) => {
+export const setupUI = (user) => {
   const loggedInLinks = document.querySelectorAll('.logged-in');
   const loggedOutLinks = document.querySelectorAll('.logged-out');
 
   if (user) {
     loggedInLinks.forEach((link) => (link.style.display = 'block'));
     loggedOutLinks.forEach((link) => (link.style.display = 'none'));
+    addButton.classList.remove('d-none');
   } else {
     loggedInLinks.forEach((link) => (link.style.display = 'none'));
     loggedOutLinks.forEach((link) => (link.style.display = 'block'));
+    addButton.classList.add('d-none');
   }
 };
 
@@ -72,7 +74,7 @@ auth.onAuthStateChanged((user) => {
         });
       });
     error.style.display = 'none';
-    setupLinks(user);
+    setupUI(user);
     // Hide preloader and show page
     setTimeout(() => {
       preloader.classList.add('loaded');
@@ -85,7 +87,7 @@ auth.onAuthStateChanged((user) => {
     notes.innerHTML = '';
     error.style.display = 'block';
     infoText.classList.add('d-none');
-    setupLinks();
+    setupUI();
     // Hide preloader and show page
     setTimeout(() => {
       preloader.classList.add('loaded');
