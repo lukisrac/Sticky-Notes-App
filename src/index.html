@@ -6,14 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Notes App</title>
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="./scss/main.scss" />
   </head>
 
@@ -28,20 +22,10 @@
       <nav class="nav">
         <ul class="nav__list right">
           <li class="logged-out nav__item">
-            <a
-              href="#"
-              class="nav__link modal-trigger"
-              data-target="modal-login"
-              >Login</a
-            >
+            <a href="#" class="nav__link modal-trigger" data-target="modal-login">Login</a>
           </li>
           <li class="logged-out nav__item">
-            <a
-              href="#"
-              class="nav__link modal-trigger"
-              data-target="modal-signup"
-              >Sign up</a
-            >
+            <a href="#" class="nav__link modal-trigger" data-target="modal-signup">Sign up</a>
           </li>
           <li class="logged-in nav__item">
             <a href="#" class="nav__link" id="logout">Logout</a>
@@ -90,6 +74,7 @@
       <main>
         <div class="container">
           <h5 class="error">You need to login to view notes!</h5>
+          <p class="info-text">No notes! Click + button to add one.</p>
           <div class="notes__wrapper"></div>
         </div>
       </main>
@@ -107,12 +92,7 @@
           </div>
           <div class="input-field">
             <label for="description">Enter description</label>
-            <textarea
-              class="materialize-textarea"
-              id="description"
-              cols="30"
-              rows="10"
-            ></textarea>
+            <textarea class="materialize-textarea" id="description" cols="30" rows="10"></textarea>
           </div>
           <input type="submit" value="Add note" class="submit" />
         </form>
@@ -123,31 +103,19 @@
           <span class="close">&Cross;</span>
           <div class="input-field">
             <label for="edit-title" class="active">Enter title</label>
-            <input
-              type="text"
-              id="edit-title"
-              class="input"
-              autocomplete="off"
-            />
+            <input type="text" id="edit-title" class="input" autocomplete="off" />
           </div>
           <div class="input-field">
-            <label for="edit-description" class="active"
-              >Enter description</label
-            >
-            <textarea
-              class="materialize-textarea"
-              id="edit-description"
-              cols="30"
-              rows="10"
-            ></textarea>
+            <label for="edit-description" class="active">Enter description</label>
+            <textarea class="materialize-textarea" id="edit-description" cols="30" rows="10"></textarea>
           </div>
           <input type="submit" value="Edit note" class="submit" />
         </form>
       </div>
 
-      <div class="alert added d-none">Note was added</div>
-      <div class="alert updated d-none">Note was updated</div>
-      <div class="alert deleted d-none">Note was deleted</div>
+      <div class="alert added">Note was added</div>
+      <div class="alert updated">Note was updated</div>
+      <div class="alert deleted">Note was deleted</div>
     </div>
 
     <script src="./js/main.js"></script>

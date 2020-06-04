@@ -8,6 +8,7 @@ const preloader = document.querySelector('.preloader');
 const page = document.querySelector('.page');
 const addButton = document.querySelector('button.add');
 const error = document.querySelector('h5.error');
+const infoText = document.querySelector('p.info-text');
 const notes = document.querySelector('.notes__wrapper');
 const formContainer = document.querySelector('.form__wrapper');
 const form = document.querySelector('.add-note');
@@ -43,12 +44,9 @@ const getStatus = () => {
     .get()
     .then((doc) => {
       if (!doc.size) {
-        const p = document.createElement('p');
-        p.className = 'info-text';
-        p.textContent = 'No notes! Click + button to add one.';
-        notes.append(p);
+        infoText.classList.remove('d-none');
       } else {
-        notes.querySelector('p').style.display = 'none';
+        infoText.classList.add('d-none');
       }
     });
 };
@@ -86,6 +84,7 @@ auth.onAuthStateChanged((user) => {
   } else {
     notes.innerHTML = '';
     error.style.display = 'block';
+    infoText.classList.add('d-none');
     setupLinks();
     // Hide preloader and show page
     setTimeout(() => {
@@ -160,10 +159,9 @@ const addNote = (e) => {
       console.log('Note added');
       formContainer.classList.add('d-none');
       form.reset();
-      addAlert.classList.remove('d-none');
-      addAlert.classList.remove('hide');
+      addAlert.classList.add('show');
       setTimeout(() => {
-        addAlert.classList.add('hide');
+        addAlert.classList.remove('show');
       }, 2000);
     })
     .catch((err) => console.log(err));
@@ -180,19 +178,12 @@ const deleteNote = (e) => {
       dangerMode: true,
     }).then((answer) => {
       if (answer) {
-        const id = e.target.parentElement.parentElement.parentElement.getAttribute(
-          'data-id'
-        );
+        const id = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
         db.collection('notes')
           .doc(id)
           .delete()
           .then(() => {
             console.log('Note deleted');
-            deleteAlert.classList.remove('d-none');
-            deleteAlert.classList.remove('hide');
-            setTimeout(() => {
-              deleteAlert.classList.add('hide');
-            }, 2000);
           });
       }
     });
@@ -205,6 +196,10 @@ const deleteNoteHTML = (id) => {
   notes.forEach((note) => {
     if (note.getAttribute('data-id') === id) {
       note.remove();
+      deleteAlert.classList.add('show');
+      setTimeout(() => {
+        deleteAlert.classList.remove('show');
+      }, 2000);
     }
   });
 };
@@ -231,10 +226,9 @@ const editNote = (e) => {
         .then(() => {
           editFormContainer.classList.add('d-none');
           editForm.reset();
-          editAlert.classList.remove('d-none');
-          editAlert.classList.remove('hide');
+          editAlert.classList.add('show');
           setTimeout(() => {
-            editAlert.classList.add('hide');
+            editAlert.classList.remove('show');
           }, 2000);
         })
         .catch((err) => console.log(err));

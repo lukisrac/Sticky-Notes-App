@@ -130,17 +130,17 @@ circle {
   display: none;
   text-align: center;
 }
+.info-text {
+  flex-basis: 100%;
+  font-size: 1.65rem;
+  line-height: 110%;
+  margin: 1.0933333333rem 0 0.656rem 0;
+  text-align: center;
+}
 .notes__wrapper {
   display: flex;
   flex-flow: row wrap;
 
-  .info-text {
-    flex-basis: 100%;
-    font-size: 1.65rem;
-    line-height: 110%;
-    margin: 1.0933333333rem 0 0.656rem 0;
-    text-align: center;
-  }
   .note {
     flex-basis: 20%;
     @media screen and (max-width: 576px) {
@@ -231,8 +231,14 @@ circle {
   color: #fff;
   padding: 0.5rem 1rem;
   width: 15rem;
-  opacity: 1;
+  opacity: 0;
+  pointer-events: none;
   transition: 0.6s;
+
+  &.show {
+    opacity: 1;
+    pointer-events: all;
+  }
 }
 .added {
   background: #018e42;

@@ -21,7 +21,7 @@ export const auth = firebase.auth();
 // Sign up
 const signUpForm = document.querySelector('#signup-form');
 
-signUpForm.addEventListener('submit', e => {
+signUpForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const email = signUpForm['signup-email'].value;
@@ -34,7 +34,7 @@ signUpForm.addEventListener('submit', e => {
       M.Modal.getInstance(modal).close();
       signUpForm.reset();
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 });
@@ -42,7 +42,7 @@ signUpForm.addEventListener('submit', e => {
 // Log in
 const loginForm = document.querySelector('#login-form');
 
-loginForm.addEventListener('submit', e => {
+loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const email = loginForm['login-email'].value;
@@ -58,9 +58,8 @@ loginForm.addEventListener('submit', e => {
 // Log out
 const logout = document.querySelector('#logout');
 
-logout.addEventListener('click', e => {
+logout.addEventListener('click', (e) => {
   e.preventDefault();
 
   auth.signOut();
-  document.querySelector('.notes__wrapper p.info-text').style.display = 'none';
 });
