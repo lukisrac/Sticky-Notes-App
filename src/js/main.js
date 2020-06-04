@@ -1,8 +1,7 @@
-import 'materialize-css';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { auth } from './auth';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 const preloader = document.querySelector('.preloader');
 const page = document.querySelector('.page');
@@ -14,15 +13,32 @@ const formContainer = document.querySelector('.form__wrapper');
 const form = document.querySelector('.add-note');
 const editFormContainer = document.querySelector('.edit-form__wrapper');
 const editForm = document.querySelector('.edit-note');
-const addAlert = document.querySelector('.alert.added');
-const editAlert = document.querySelector('.alert.updated');
-const deleteAlert = document.querySelector('.alert.deleted');
+const addToast = document.querySelector('.toast-notification.added');
+const editToast = document.querySelector('.toast-notification.updated');
+const deleteToast = document.querySelector('.toast-notification.deleted');
 
 const db = firebase.firestore();
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize all modals
   const elems = document.querySelectorAll('.modal');
   M.Modal.init(elems);
+
+  // Reset form for adding note after close
+  const addModal = document.querySelector('#modal-add');
+  M.Modal.init(addModal, {
+    onCloseEnd: () => {
+      document.querySelector('.add-note').reset();
+    },
+  });
+
+  // Initialize edit form with active labels
+  const editModal = document.querySelector('#modal-edit');
+  M.Modal.init(editModal, {
+    onOpenStart: () => {
+      M.updateTextFields();
+    },
+  });
 });
 
 // Show/hide links
@@ -99,16 +115,6 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-// Open add form
-const openForm = () => {
-  formContainer.classList.remove('d-none');
-};
-
-// Open edit form
-const openEditForm = () => {
-  editFormContainer.classList.remove('d-none');
-};
-
 // Close add form
 const closeForm = (e) => {
   if (e.target.classList.contains('close')) {
@@ -133,7 +139,7 @@ const getNotes = (note, id) => {
       <h3 class="note__title">${note.title}</h3>
       <p class="note__text">${note.content}</p>
       <div class="note__footer">
-          <i class="icon edit material-icons">edit</i>
+          <i class="icon edit material-icons modal-trigger" data-target="modal-edit">edit</i>
           <i class="icon delete material-icons">delete</i>
       </div>
   </div>
@@ -159,11 +165,12 @@ const addNote = (e) => {
     .add(note)
     .then(() => {
       console.log('Note added');
-      formContainer.classList.add('d-none');
+      const modal = document.querySelector('#modal-add');
+      M.Modal.getInstance(modal).close();
       form.reset();
-      addAlert.classList.add('show');
+      addToast.classList.add('show');
       setTimeout(() => {
-        addAlert.classList.remove('show');
+        addToast.classList.remove('show');
       }, 2000);
     })
     .catch((err) => console.log(err));
@@ -172,14 +179,19 @@ const addNote = (e) => {
 // Delete note from database
 const deleteNote = (e) => {
   if (e.target.classList.contains('delete')) {
-    swal({
+    Swal.fire({
       title: 'Are you sure you want to delete this note?',
       text: 'Once deleted, you will not be able to recover this note!',
       icon: 'warning',
-      buttons: ['No', 'Yes, delete it!'],
-      dangerMode: true,
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        confirmButton: 'btn dialog-btn red z-depth-0',
+        cancelButton: 'btn dialog-btn grey lighten-1 z-depth-0',
+      },
+      buttonsStyling: false,
     }).then((answer) => {
-      if (answer) {
+      if (answer.value) {
         const id = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
         db.collection('notes')
           .doc(id)
@@ -198,9 +210,9 @@ const deleteNoteHTML = (id) => {
   notes.forEach((note) => {
     if (note.getAttribute('data-id') === id) {
       note.remove();
-      deleteAlert.classList.add('show');
+      deleteToast.classList.add('show');
       setTimeout(() => {
-        deleteAlert.classList.remove('show');
+        deleteToast.classList.remove('show');
       }, 2000);
     }
   });
@@ -213,10 +225,10 @@ const editNote = (e) => {
   const noteContainer = e.target.parentElement.parentElement;
   const title = noteContainer.querySelector('.note__title').innerHTML;
   const description = noteContainer.querySelector('.note__text').innerHTML;
+  editForm.reset();
   editForm['edit-title'].value = title;
   editForm['edit-description'].textContent = description;
   if (e.target.classList.contains('edit')) {
-    openEditForm();
     editForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const thisNote = db.collection('notes').doc(id);
@@ -226,11 +238,12 @@ const editNote = (e) => {
           content: editForm['edit-description'].value,
         })
         .then(() => {
-          editFormContainer.classList.add('d-none');
+          const modal = document.querySelector('#modal-edit');
+          M.Modal.getInstance(modal).close();
           editForm.reset();
-          editAlert.classList.add('show');
+          editToast.classList.add('show');
           setTimeout(() => {
-            editAlert.classList.remove('show');
+            editToast.classList.remove('show');
           }, 2000);
         })
         .catch((err) => console.log(err));
@@ -252,7 +265,6 @@ const updateNote = (data) => {
 // Listening for events
 notes.addEventListener('click', editNote);
 notes.addEventListener('click', deleteNote);
-addButton.addEventListener('click', openForm);
 form.addEventListener('click', closeForm);
 editForm.addEventListener('click', closeEditForm);
 form.addEventListener('submit', addNote);

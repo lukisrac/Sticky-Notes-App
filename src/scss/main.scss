@@ -1,4 +1,4 @@
-@import '../../node_modules/materialize-css/dist/css/materialize.min.css';
+//@import '../../node_modules/materialize-css/dist/css/materialize.min.css';
 
 // VARIABLES
 $bg-color: #e0e2db;
@@ -174,56 +174,7 @@ circle {
     }
   }
 }
-.form__wrapper,
-.edit-form__wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.add-note,
-.edit-note {
-  background: #fff;
-  width: 40%;
-  padding: 3rem 1.5rem;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-
-  .close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 2rem;
-    cursor: pointer;
-  }
-  label {
-    margin-bottom: 0.5rem;
-  }
-  .submit {
-    align-self: flex-end;
-    margin-top: 1rem;
-    background: $button-bg;
-    color: #fff;
-    border: 0;
-    border-radius: 0.25rem;
-    padding: 0.5rem 1rem;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.2s;
-
-    &:hover {
-      background: darken($button-bg, 5%);
-    }
-  }
-}
-.alert {
+.toast-notification {
   border-radius: 0.25rem;
   position: absolute;
   bottom: 1rem;
@@ -258,17 +209,10 @@ circle {
 }
 
 // Sweetalert custom styles
-.swal-modal {
-  width: 450px;
-}
-.swal-icon {
-  width: 50px;
-  height: 50px;
+.swal2-popup {
+  border-radius: 2px !important;
 
-  &--warning__body {
-    height: 20px;
+  .dialog-btn {
+    margin: 0 5px;
   }
-}
-.swal-text {
-  text-align: center;
 }

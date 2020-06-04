@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <link rel="stylesheet" href="./scss/main.scss" />
   </head>
 
@@ -79,45 +80,53 @@
         </div>
       </main>
 
-      <button class="add waves-effect waves-light" title="Add new note">
+      <button class="add waves-effect waves-light modal-trigger" title="Add new note" data-target="modal-add">
         +
       </button>
 
-      <div class="form__wrapper d-none">
-        <form class="add-note">
-          <span class="close">&Cross;</span>
-          <div class="input-field">
-            <label for="title">Enter title</label>
-            <input type="text" id="title" class="input" autocomplete="off" />
-          </div>
-          <div class="input-field">
-            <label for="description">Enter description</label>
-            <textarea class="materialize-textarea" id="description" cols="30" rows="10"></textarea>
-          </div>
-          <input type="submit" value="Add note" class="submit" />
-        </form>
+      <!-- Add note modal -->
+      <div id="modal-add" class="form__wrapper modal">
+        <div class="modal-content">
+          <h4>Add note</h4>
+          <form class="add-note">
+            <div class="input-field">
+              <label for="title">Enter title</label>
+              <input type="text" id="title" class="input" autocomplete="off" />
+            </div>
+            <div class="input-field">
+              <label for="description">Enter description</label>
+              <textarea class="materialize-textarea" id="description" cols="30" rows="10"></textarea>
+            </div>
+            <input type="submit" value="Add note" class="btn yellow darken-2 z-depth-0 submit" />
+          </form>
+        </div>
       </div>
 
-      <div class="edit-form__wrapper d-none">
-        <form class="edit-note">
-          <span class="close">&Cross;</span>
-          <div class="input-field">
-            <label for="edit-title" class="active">Enter title</label>
-            <input type="text" id="edit-title" class="input" autocomplete="off" />
-          </div>
-          <div class="input-field">
-            <label for="edit-description" class="active">Enter description</label>
-            <textarea class="materialize-textarea" id="edit-description" cols="30" rows="10"></textarea>
-          </div>
-          <input type="submit" value="Edit note" class="submit" />
-        </form>
+      <!-- Edit note modal -->
+      <div id="modal-edit" class="edit-form__wrapper modal">
+        <div class="modal-content">
+          <h4>Edit note</h4>
+          <form class="edit-note">
+            <div class="input-field">
+              <label for="edit-title">Enter title</label>
+              <input type="text" id="edit-title" class="input" autocomplete="off" />
+            </div>
+            <div class="input-field">
+              <label for="edit-description">Enter description</label>
+              <textarea class="materialize-textarea" id="edit-description" cols="30" rows="10"></textarea>
+            </div>
+            <input type="submit" value="Edit note" class="btn yellow darken-2 z-depth-0 submit" />
+          </form>
+        </div>
       </div>
 
-      <div class="alert added">Note was added</div>
-      <div class="alert updated">Note was updated</div>
-      <div class="alert deleted">Note was deleted</div>
+      <!-- Toast notifications -->
+      <div class="toast-notification added">Note was added</div>
+      <div class="toast-notification updated">Note was updated</div>
+      <div class="toast-notification deleted">Note was deleted</div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./js/main.js"></script>
   </body>
 </html>
