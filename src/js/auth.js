@@ -4,6 +4,8 @@ import * as firebase from 'firebase/app';
 // Firebase Auth
 import 'firebase/auth';
 
+import { toggleToastNotification } from './main';
+
 // Firebase config
 const firebaseConfig = {
   apiKey: `${process.env.FIREBASE_API_KEY}`,
@@ -47,12 +49,29 @@ loginForm.addEventListener('submit', (e) => {
 
   const email = loginForm['login-email'].value;
   const password = loginForm['login-password'].value;
+  const passwordMsg = loginForm.querySelector('.password-error');
+  const emailMsg = loginForm.querySelector('.email-error');
 
-  auth.signInWithEmailAndPassword(email, password).then(() => {
-    const modal = document.querySelector('#modal-login');
-    M.Modal.getInstance(modal).close();
-    loginForm.reset();
-  });
+  auth
+    .signInWithEmailAndPassword(email, password)
+    .then(() => {
+      const modal = document.querySelector('#modal-login');
+      M.Modal.getInstance(modal).close();
+      loginForm.reset();
+      toggleToastNotification('login');
+      passwordMsg.textContent = '';
+      emailMsg.textContent = '';
+    })
+    .catch((err) => {
+      console.log(err);
+      passwordMsg.textContent = '';
+      emailMsg.textContent = '';
+      if (err.code === 'auth/wrong-password') {
+        passwordMsg.textContent = 'Wrong password';
+      } else if (err.code === 'auth/user-not-found') {
+        emailMsg.textContent = 'This user email does not exist';
+      }
+    });
 });
 
 // Log out
@@ -62,4 +81,5 @@ logout.addEventListener('click', (e) => {
   e.preventDefault();
 
   auth.signOut();
+  toggleToastNotification('logout');
 });

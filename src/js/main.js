@@ -131,6 +131,17 @@ const closeEditForm = (e) => {
   }
 };
 
+// Toggle toast notification
+export const toggleToastNotification = (action) => {
+  if (action) {
+    const toastNotification = document.querySelector(`.toast-notification.${action}`);
+    toastNotification.classList.add('show');
+    setTimeout(() => {
+      toastNotification.classList.remove('show');
+    }, 2000);
+  }
+};
+
 // Get notes
 const getNotes = (note, id) => {
   let html = `
@@ -168,10 +179,7 @@ const addNote = (e) => {
       const modal = document.querySelector('#modal-add');
       M.Modal.getInstance(modal).close();
       form.reset();
-      addToast.classList.add('show');
-      setTimeout(() => {
-        addToast.classList.remove('show');
-      }, 2000);
+      toggleToastNotification('added');
     })
     .catch((err) => console.log(err));
 };
@@ -210,10 +218,7 @@ const deleteNoteHTML = (id) => {
   notes.forEach((note) => {
     if (note.getAttribute('data-id') === id) {
       note.remove();
-      deleteToast.classList.add('show');
-      setTimeout(() => {
-        deleteToast.classList.remove('show');
-      }, 2000);
+      toggleToastNotification('deleted');
     }
   });
 };
@@ -241,10 +246,7 @@ const editNote = (e) => {
           const modal = document.querySelector('#modal-edit');
           M.Modal.getInstance(modal).close();
           editForm.reset();
-          editToast.classList.add('show');
-          setTimeout(() => {
-            editToast.classList.remove('show');
-          }, 2000);
+          toggleToastNotification('updated');
         })
         .catch((err) => console.log(err));
     });

@@ -190,15 +190,21 @@ circle {
     opacity: 1;
     pointer-events: all;
   }
-}
-.added {
-  background: #018e42;
-}
-.deleted {
-  background: #f03a47;
-}
-.updated {
-  background: #ff9800;
+  &.added {
+    background: #018e42;
+  }
+  &.deleted {
+    background: #f03a47;
+  }
+  &.updated {
+    background: #ff9800;
+  }
+  &.login {
+    background: #018e42;
+  }
+  &.logout {
+    background: #ff9800;
+  }
 }
 
 .d-none {
@@ -215,4 +221,7 @@ circle {
   .dialog-btn {
     margin: 0 5px;
   }
+}
+.helper-text {
+  color: red !important;
 }

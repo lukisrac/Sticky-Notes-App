@@ -42,10 +42,12 @@
             <div class="input-field">
               <input type="email" id="login-email" required />
               <label for="login-email">Email address</label>
+              <span class="helper-text email-error"></span>
             </div>
             <div class="input-field">
               <input type="password" id="login-password" required />
               <label for="login-password">Your password</label>
+              <span class="helper-text password-error"></span>
             </div>
             <button class="btn yellow darken-2 z-depth-0">Login</button>
           </form>
@@ -124,6 +126,8 @@
       <div class="toast-notification added">Note was added</div>
       <div class="toast-notification updated">Note was updated</div>
       <div class="toast-notification deleted">Note was deleted</div>
+      <div class="toast-notification login">User logged in</div>
+      <div class="toast-notification logout">User logged out</div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
