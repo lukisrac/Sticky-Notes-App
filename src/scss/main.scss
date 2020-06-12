@@ -107,6 +107,11 @@ circle {
     background: $button-bg;
   }
 }
+.brand-logo {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin-left: 2rem;
+}
 .nav__item {
   display: none;
 }
@@ -129,17 +134,19 @@ circle {
   width: 100%;
   display: none;
   text-align: center;
+  margin-top: 3rem;
 }
 .info-text {
   flex-basis: 100%;
   font-size: 1.65rem;
   line-height: 110%;
-  margin: 1.0933333333rem 0 0.656rem 0;
+  margin: 3rem 0 0.656rem 0;
   text-align: center;
 }
 .notes__wrapper {
   display: flex;
   flex-flow: row wrap;
+  margin-top: 3rem;
 
   .note {
     flex-basis: 20%;
@@ -177,8 +184,8 @@ circle {
 .toast-notification {
   border-radius: 0.25rem;
   position: absolute;
-  bottom: 1rem;
-  left: 1rem;
+  top: 7rem;
+  right: 1rem;
   color: #fff;
   padding: 0.5rem 1rem;
   width: 15rem;

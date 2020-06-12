@@ -5,6 +5,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
 import { toggleToastNotification } from './main';
+import Swal from 'sweetalert2';
 
 // Firebase config
 const firebaseConfig = {
@@ -80,6 +81,20 @@ const logout = document.querySelector('#logout');
 logout.addEventListener('click', (e) => {
   e.preventDefault();
 
-  auth.signOut();
-  toggleToastNotification('logout');
+  Swal.fire({
+    title: 'Are you sure you want to log out?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, log out.',
+    customClass: {
+      confirmButton: 'btn dialog-btn red z-depth-0',
+      cancelButton: 'btn dialog-btn grey lighten-1 z-depth-0',
+    },
+    buttonsStyling: false,
+  }).then((answer) => {
+    if (answer.value) {
+      auth.signOut();
+      toggleToastNotification('logout');
+    }
+  });
 });
