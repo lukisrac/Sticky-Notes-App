@@ -29,6 +29,7 @@ signUpForm.addEventListener('submit', (e) => {
 
   const email = signUpForm['signup-email'].value;
   const password = signUpForm['signup-password'].value;
+  const emailMsg = signUpForm.querySelector('.email-error');
 
   auth
     .createUserWithEmailAndPassword(email, password)
@@ -39,6 +40,10 @@ signUpForm.addEventListener('submit', (e) => {
     })
     .catch((err) => {
       console.log(err);
+      emailMsg.textContent = '';
+      if (err.code === 'auth/invalid-email') {
+        emailMsg.textContent = 'The email address is in the wrong format.';
+      }
     });
 });
 
