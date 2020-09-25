@@ -19,116 +19,112 @@
       </svg>
     </div>
 
-    <div class="page">
-      <nav class="nav">
-        <a href="#" class="brand-logo">Sticky Notes</a>
-        <ul class="nav__list right">
-          <li class="logged-out nav__item">
-            <a href="#" class="nav__link modal-trigger" data-target="modal-login">Login</a>
-          </li>
-          <li class="logged-out nav__item">
-            <a href="#" class="nav__link modal-trigger" data-target="modal-signup">Sign up</a>
-          </li>
-          <li class="logged-in nav__item">
-            <a href="#" class="nav__link" id="logout">Logout</a>
-          </li>
-        </ul>
-      </nav>
+    <nav class="nav">
+      <a href="#" class="brand-logo">Sticky Notes</a>
+      <ul class="nav__list right">
+        <li class="logged-out nav__item">
+          <a href="#" class="nav__link modal-trigger" data-target="modal-login">Login</a>
+        </li>
+        <li class="logged-out nav__item">
+          <a href="#" class="nav__link modal-trigger" data-target="modal-signup">Sign up</a>
+        </li>
+        <li class="logged-in nav__item">
+          <a href="#" class="nav__link" id="logout">Logout</a>
+        </li>
+      </ul>
+    </nav>
 
-      <!-- Login modal -->
-      <div id="modal-login" class="modal">
-        <div class="modal-content">
-          <h4>Login</h4>
-          <form id="login-form">
-            <div class="input-field">
-              <input type="email" id="login-email" required />
-              <label for="login-email">Email address</label>
-              <span class="helper-text email-error"></span>
-            </div>
-            <div class="input-field">
-              <input type="password" id="login-password" required />
-              <label for="login-password">Your password</label>
-              <span class="helper-text password-error"></span>
-            </div>
-            <button class="btn yellow darken-2 z-depth-0">Login</button>
-          </form>
-        </div>
+    <!-- Login modal -->
+    <div id="modal-login" class="modal">
+      <div class="modal-content">
+        <h4>Login</h4>
+        <form id="login-form">
+          <div class="input-field">
+            <input type="email" id="login-email" required />
+            <label for="login-email">Email address</label>
+            <span class="helper-text email-error"></span>
+          </div>
+          <div class="input-field">
+            <input type="password" id="login-password" required />
+            <label for="login-password">Your password</label>
+            <span class="helper-text password-error"></span>
+          </div>
+          <button class="btn yellow darken-2 z-depth-0">Login</button>
+        </form>
       </div>
-
-      <!-- Signup modal -->
-      <div id="modal-signup" class="modal">
-        <div class="modal-content">
-          <h4>Sign up</h4>
-          <form id="signup-form">
-            <div class="input-field">
-              <input type="email" id="signup-email" required />
-              <label for="signup-email">Email address</label>
-              <span class="helper-text email-error"></span>
-            </div>
-            <div class="input-field">
-              <input type="password" id="signup-password" required />
-              <label for="signup-password">Choose password</label>
-            </div>
-            <button class="btn yellow darken-2 z-depth-0">Sign up</button>
-          </form>
-        </div>
-      </div>
-
-      <main>
-        <div class="container">
-          <h5 class="error">You need to login to view notes!</h5>
-          <p class="info-text">No notes! Click + button to add one.</p>
-          <div class="notes__wrapper"></div>
-        </div>
-      </main>
-
-      <button class="add waves-effect waves-light modal-trigger" title="Add new note" data-target="modal-add">
-        +
-      </button>
-
-      <!-- Add note modal -->
-      <div id="modal-add" class="form__wrapper modal">
-        <div class="modal-content">
-          <h4>Add note</h4>
-          <form class="add-note">
-            <div class="input-field">
-              <label for="title">Enter title</label>
-              <input type="text" id="title" class="input" autocomplete="off" />
-            </div>
-            <div class="input-field">
-              <label for="description">Enter description</label>
-              <textarea class="materialize-textarea" id="description" cols="30" rows="10"></textarea>
-            </div>
-            <input type="submit" value="Add note" class="btn yellow darken-2 z-depth-0 submit" />
-          </form>
-        </div>
-      </div>
-
-      <!-- Edit note modal -->
-      <div id="modal-edit" class="edit-form__wrapper modal">
-        <div class="modal-content">
-          <h4>Edit note</h4>
-          <form class="edit-note">
-            <div class="input-field">
-              <label for="edit-title">Enter title</label>
-              <input type="text" id="edit-title" class="input" autocomplete="off" />
-            </div>
-            <div class="input-field">
-              <label for="edit-description">Enter description</label>
-              <textarea class="materialize-textarea" id="edit-description" cols="30" rows="10"></textarea>
-            </div>
-            <input type="submit" value="Edit note" class="btn yellow darken-2 z-depth-0 submit" />
-          </form>
-        </div>
-      </div>
-
-      <!-- Toast notifications -->
-      <div class="toast-notification added">Note was added</div>
-      <div class="toast-notification updated">Note was updated</div>
-      <div class="toast-notification deleted">Note was deleted</div>
-      <div class="toast-notification login">User logged in</div>
-      <div class="toast-notification logout">User logged out</div>
     </div>
+
+    <!-- Signup modal -->
+    <div id="modal-signup" class="modal">
+      <div class="modal-content">
+        <h4>Sign up</h4>
+        <form id="signup-form">
+          <div class="input-field">
+            <input type="email" id="signup-email" required />
+            <label for="signup-email">Email address</label>
+            <span class="helper-text email-error"></span>
+          </div>
+          <div class="input-field">
+            <input type="password" id="signup-password" required />
+            <label for="signup-password">Choose password</label>
+          </div>
+          <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+        </form>
+      </div>
+    </div>
+
+    <main>
+      <div class="container">
+        <h5 class="error">You need to login to view notes!</h5>
+        <p class="info-text">No notes! Click + button to add one.</p>
+        <div class="notes__wrapper"></div>
+      </div>
+    </main>
+
+    <button class="add waves-effect waves-light modal-trigger" title="Add new note" data-target="modal-add">+</button>
+
+    <!-- Add note modal -->
+    <div id="modal-add" class="form__wrapper modal">
+      <div class="modal-content">
+        <h4>Add note</h4>
+        <form class="add-note">
+          <div class="input-field">
+            <label for="title">Enter title</label>
+            <input type="text" id="title" class="input" autocomplete="off" />
+          </div>
+          <div class="input-field">
+            <label for="description">Enter description</label>
+            <textarea class="materialize-textarea" id="description" cols="30" rows="10"></textarea>
+          </div>
+          <input type="submit" value="Add note" class="btn yellow darken-2 z-depth-0 submit" />
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit note modal -->
+    <div id="modal-edit" class="edit-form__wrapper modal">
+      <div class="modal-content">
+        <h4>Edit note</h4>
+        <form class="edit-note">
+          <div class="input-field">
+            <label for="edit-title">Enter title</label>
+            <input type="text" id="edit-title" class="input" autocomplete="off" />
+          </div>
+          <div class="input-field">
+            <label for="edit-description">Enter description</label>
+            <textarea class="materialize-textarea" id="edit-description" cols="30" rows="10"></textarea>
+          </div>
+          <input type="submit" value="Edit note" class="btn yellow darken-2 z-depth-0 submit" />
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div class="toast-notification added">Note was added</div>
+    <div class="toast-notification updated">Note was updated</div>
+    <div class="toast-notification deleted">Note was deleted</div>
+    <div class="toast-notification login">User logged in</div>
+    <div class="toast-notification logout">User logged out</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./js/main.js"></script>

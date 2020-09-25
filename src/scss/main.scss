@@ -16,12 +16,6 @@ $button-bg: #3d348b;
   outline: none;
   text-decoration: none;
 }
-.page {
-  display: none;
-}
-.page.loaded {
-  display: block;
-}
 body {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
@@ -45,9 +39,11 @@ body {
   align-items: center;
   transition: all 0.3s ease;
   opacity: 1;
+  z-index: 99;
 }
 .preloader.loaded {
   opacity: 0;
+  pointer-events: none;
 }
 svg {
   width: 3.75em;

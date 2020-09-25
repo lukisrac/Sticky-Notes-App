@@ -69,6 +69,12 @@ const getStatus = () => {
     });
 };
 
+const hidePreloader = () => {
+  setTimeout(() => {
+    preloader.classList.add('loaded');
+  }, 200);
+};
+
 auth.onAuthStateChanged((user) => {
   if (user) {
     getStatus();
@@ -91,27 +97,15 @@ auth.onAuthStateChanged((user) => {
       });
     error.style.display = 'none';
     setupUI(user);
-    // Hide preloader and show page
-    setTimeout(() => {
-      preloader.classList.add('loaded');
-      page.classList.add('loaded');
-    }, 1000);
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 1500);
+    // Hide preloader
+    hidePreloader();
   } else {
     notes.innerHTML = '';
     error.style.display = 'block';
     infoText.classList.add('d-none');
     setupUI();
-    // Hide preloader and show page
-    setTimeout(() => {
-      preloader.classList.add('loaded');
-      page.classList.add('loaded');
-    }, 1000);
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 1500);
+    // Hide preloader
+    hidePreloader();
   }
 });
 
@@ -134,7 +128,9 @@ const closeEditForm = (e) => {
 // Toggle toast notification
 export const toggleToastNotification = (action) => {
   if (action) {
-    const toastNotification = document.querySelector(`.toast-notification.${action}`);
+    const toastNotification = document.querySelector(
+      `.toast-notification.${action}`
+    );
     toastNotification.classList.add('show');
     setTimeout(() => {
       toastNotification.classList.remove('show');
@@ -200,7 +196,9 @@ const deleteNote = (e) => {
       buttonsStyling: false,
     }).then((answer) => {
       if (answer.value) {
-        const id = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
+        const id = e.target.parentElement.parentElement.parentElement.getAttribute(
+          'data-id'
+        );
         db.collection('notes')
           .doc(id)
           .delete()
